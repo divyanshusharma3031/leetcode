@@ -6,20 +6,20 @@ public:
         
     }
     void addNum(int num) {
-        maxheap.push(num);
-        minheap.push(maxheap.top());
-        maxheap.pop();
-        while(minheap.size()>maxheap.size())
+        minheap.push(num);
+        maxheap.push(minheap.top());
+        minheap.pop();
+        while(maxheap.size()>minheap.size())
         {
-            maxheap.push(minheap.top());
-            minheap.pop();
+            minheap.push(maxheap.top());
+            maxheap.pop();
         }
     }
     
     double findMedian() {
-        if(maxheap.size()>minheap.size())
+        if(minheap.size()>maxheap.size())
         {
-            return maxheap.top();
+            return minheap.top();
         }
         return (maxheap.top()+minheap.top())/2;
     }
