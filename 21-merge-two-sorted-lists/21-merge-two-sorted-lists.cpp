@@ -10,26 +10,60 @@
  */
 class Solution {
 public:
+    ListNode * reverse(ListNode *p)
+    {
+        ListNode *q=NULL;
+        ListNode *r=NULL;
+        while(p)
+        {
+            r=q;
+            q=p;
+            p=p->next;
+            q->next=r;
+        }
+        return q;
+    }
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         ListNode *ans=NULL;
-        if(!list1)
+        ListNode *p=list1;
+        ListNode *q=list2;
+        ListNode *temp=NULL;
+        while(p!=NULL && q!=NULL)
         {
-            return list2;
+            if(p->val<=q->val)
+            {
+               ListNode *x=new ListNode(p->val);
+               ans=x;
+                ans->next=temp;
+                temp=ans;
+                p=p->next;
+            }
+            else
+            {
+                ListNode *x=new ListNode(q->val);
+               ans=x;
+                ans->next=temp;
+                temp=ans;   
+                q=q->next;
+            }
         }
-        if(!list2)
+        while(p)
         {
-            return list1;
+            ListNode *x=new ListNode(p->val);
+               ans=x;
+                ans->next=temp;
+                temp=ans;
+            p=p->next;
         }
-        if(list1->val<=list2->val)
+        while(q)
         {
-            ans=list1;
-            ans->next=mergeTwoLists(list1->next,list2);
+            ListNode *x=new ListNode(q->val);
+               ans=x;
+                ans->next=temp;
+                temp=ans;
+            q=q->next;
         }
-        else
-        {
-            ans=list2;
-            ans->next=mergeTwoLists(list1,list2->next);
-        }
+        ans=reverse(ans);
         return ans;
     }
 };
