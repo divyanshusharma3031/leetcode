@@ -9,29 +9,28 @@ class Solution {
     vector<int> bfsOfGraph(int V, vector<int> adj[])
 {
     // Code here
-      vector<int> ans;
-       vector<bool> visited(V,false);
-       //for(int i=0;i<V;++i) visited[i]=false;
-       queue<int> q;
-       q.push(0);
-       visited[0]=true;
-       
-       while(!q.empty())
-       {
-           int s=q.front();
-           q.pop();
-           ans.push_back(s);
-           for(auto i:adj[s])
-           {
-               if(!visited[i])
-               {
-                   visited[i]=true;
-                   q.push(i);
-               }
-           }
-       }
-       return ans;
-}
+    vector<int> ans;
+    queue<int> q;
+    int n = V;
+    vector<int> vis(V + 1, 0);
+            q.push(0);
+            vis[0] = 1;
+            while (!q.empty())
+            {
+                int x = q.front();
+                q.pop();
+                ans.push_back(x);
+                for (int j = 0; j < adj[x].size(); j++)
+                {
+                    if (vis[adj[x][j]] == 0)
+                    {
+                        vis[adj[x][j]] = 1;
+                        q.push(adj[x][j]);
+                    }
+                }
+            }
+    return ans;
+    }
 };
 
 // { Driver Code Starts.
