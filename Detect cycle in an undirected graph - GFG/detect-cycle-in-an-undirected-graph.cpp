@@ -9,9 +9,9 @@ class Solution {
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
         vector<int> vis(V+1,0);
+            queue<pair<int,int>> q;
         for(int i=0;i<V;i++)
         {
-            queue<pair<int,int>> q;
             if(vis[i]==0)
             {
                 vis[i]=1;
