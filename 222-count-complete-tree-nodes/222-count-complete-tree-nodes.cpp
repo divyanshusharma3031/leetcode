@@ -42,7 +42,7 @@ public:
         long long c=pow(2,h-1)-1;
         vector<TreeNode *> arr;
         leaf(root,arr,h-1);
-        cout<<arr.size()<<"\n";
+        // cout<<arr.size()<<"\n";
         for(int i=0;i<arr.size();i++)
         {
             if(arr[i]->left && arr[i]->right)
