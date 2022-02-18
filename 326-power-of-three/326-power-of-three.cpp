@@ -6,7 +6,7 @@ public:
             return false;
         }
         float x=log2(n)/log2(3);
-        if(n==pow(3,x))
+        if(n==pow(3,int(x)))
         {
             return true;
         }
