@@ -4,7 +4,7 @@ using namespace std;
 
  // } Driver Code Ends
 
-
+typedef pair<int,int> pii;
 class Solution
 {
 	public:
@@ -15,38 +15,39 @@ class Solution
         vector<int> key(V,0);
         vector<int> MST(V,0);
         vector<int> parent(V);
+        priority_queue<pii,vector<pii>,greater<pii>> pq;
         for(int i=0;i<V;i++)
         {
             key[i]=INT_MAX;
             parent[i]=-1;
         }
         key[0]=0;
-        for(int i=0;i<V-1;i++)
+        pq.push({0,0});
+        while(!pq.empty())
         {
             int mn=INT_MAX;
-            int u=-1;
-            for(int j=0;j<V;j++)
-            {
-                if(mn>key[j] && MST[j]==0)
-                {
-                    u=j;
-                    mn=key[j];
-                }
-            }
+            int u=pq.top().second;
+            pq.pop();
             MST[u]=1;
             for(auto it:adj[u])
             {
+                // cout<<u<<" ";
                 if(MST[it[0]]==0 && it[1]<key[it[0]])
                 {
                     parent[it[0]]=u;
+                    // cout<<it[0]<<" "<<key[it[0]]<<" ";
                     key[it[0]]=it[1];
+                    // cout<<it[1]<<"\n";
+                    pq.push({it[1],it[0]});
                 }
             }
         }
         long long ans=0;
         for(int i=0;i<V;i++)
         {
+            // cout<<key[i]<<" ";
             ans+=key[i];
+            // cout<<ans<<" ";
         }
         return ans;
     }
