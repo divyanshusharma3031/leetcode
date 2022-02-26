@@ -1,6 +1,7 @@
 class Solution {
 public:
-    bool dfs(int node,vector<int> (arr[]),vector<int> &vis,int destination)
+    vector<int> *arr;
+    bool dfs(int node,vector<int> &vis,int destination)
     {
         vis[node]=1;
         if(node==destination)
@@ -11,7 +12,7 @@ public:
         {
             if(!vis[i])
             {
-                if(dfs(i,arr,vis,destination))
+                if(dfs(i,vis,destination))
                 {
                     return true;
                 }
@@ -20,16 +21,16 @@ public:
         return false;
     }
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
-        vector<int> adj[n];
+        arr=new vector<int>[n];
         for(int i=0;i<edges.size();i++)
         {
             for(int j=0;j<edges[i].size()-1;j++)
             {
-                adj[edges[i][j]].push_back(edges[i][j+1]);
-                adj[edges[i][j+1]].push_back(edges[i][j]);
+                arr[edges[i][j]].push_back(edges[i][j+1]);
+                arr[edges[i][j+1]].push_back(edges[i][j]);
             }
         }
         vector<int> vis(n+1,0);
-        return dfs(source,adj,vis,destination);
+        return dfs(source,vis,destination);
     }
 };
