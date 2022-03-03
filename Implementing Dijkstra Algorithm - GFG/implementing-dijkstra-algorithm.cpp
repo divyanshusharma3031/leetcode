@@ -3,42 +3,41 @@
 using namespace std;
 
  // } Driver Code Ends
+
+typedef pair<int,int> pii;
+
 class Solution
 {
-	public:
+    public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         // Code here
-        priority_queue <pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > q;
-        // vector<vector<int>> path(V);
         vector<int> dist(V);
+        int mx=1e9;
         for(int i=0;i<V;i++)
         {
-            dist[i]=INT_MAX;
+            dist[i]=1e9;
         }
         dist[S]=0;
-        q.push({0,S});
-        while(!q.empty())
+        priority_queue<pii,vector<pii>,greater<pii>> pq;
+        pq.push({0,S});
+        while(!pq.empty())
         {
-            int d=q.top().first;
-            int node=q.top().second;
-            q.pop();
-            for(auto it:adj[node])
+            int u=pq.top().second;
+            int wt=pq.top().first;
+            pq.pop();
+            
+            for(auto it:adj[u])
             {
-                if(dist[node]!=INT_MAX)
+                if((dist[u]+it[1])<dist[it[0]])
                 {
-                    if(dist[it[0]]>(dist[node]+it[1]))
-                   { 
-                        dist[it[0]]=dist[node]+it[1];
-                        q.push({dist[it[0]],it[0]});
-                        // cout<<dist[it[i]]<<" ";
-                   }
+                   dist[it[0]]=dist[u]+it[1];
+                    pq.push({dist[it[0]],it[0]});
                 }
             }
         }
-        // cout<<"\n";
         return dist;
     }
 };
