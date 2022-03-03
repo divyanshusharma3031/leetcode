@@ -12,43 +12,54 @@ class Solution
     int spanningTree(int V, vector<vector<int>> adj[])
     {
         // code here
-        vector<int> key(V,0);
-        vector<int> MST(V,0);
-        vector<int> parent(V);
-        priority_queue<pii,vector<pii>,greater<pii>> pq;
+        vector<int> parent(V,-1);
+        
+        vector<int> dist(V);
+        
+        dist[0]=0;
+        
         for(int i=0;i<V;i++)
         {
-            key[i]=INT_MAX;
-            parent[i]=-1;
+            dist[i]=INT_MAX;
         }
-        key[0]=0;
+        
+        vector<bool> mst(V,false);
+        
+        dist[0]=0;
+        parent[0]=-1;
+        
+        priority_queue<pii,vector<pii>,greater<pii>> pq;
+        
         pq.push({0,0});
+        
         while(!pq.empty())
         {
-            int mn=INT_MAX;
             int u=pq.top().second;
+            int wt=pq.top().first;
+            
             pq.pop();
-            MST[u]=1;
+            
+            mst[u]=true;
             for(auto it:adj[u])
             {
-                // cout<<u<<" ";
-                if(MST[it[0]]==0 && it[1]<key[it[0]])
+                int wt=it[1];
+                if(mst[it[0]]==false && wt<dist[it[0]])
                 {
+                    // cout<<wt<<"\n";
+                    dist[it[0]]=wt;
+                    pq.push({wt,it[0]});
                     parent[it[0]]=u;
-                    // cout<<it[0]<<" "<<key[it[0]]<<" ";
-                    key[it[0]]=it[1];
-                    // cout<<it[1]<<"\n";
-                    pq.push({it[1],it[0]});
                 }
             }
         }
         long long ans=0;
-        for(int i=0;i<V;i++)
+        
+        for(int i:dist)
         {
-            // cout<<key[i]<<" ";
-            ans+=key[i];
-            // cout<<ans<<" ";
+            ans+=i;
+            // cout<<i<<"\n";
         }
+        
         return ans;
     }
 };
