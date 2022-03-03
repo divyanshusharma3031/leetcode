@@ -1,5 +1,5 @@
 # Minimum Spanning Tree
-##  Medium 
+## Medium 
 <div class="problem-statement" style="user-select: auto;">
                 <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given a weighted, undirected and connected graph of <strong style="user-select: auto;">V</strong> vertices and <strong style="user-select: auto;">E</strong> edges. The task is to find the sum of weights of the edges of the&nbsp;Minimum Spanning Tree.</span></p>
 
