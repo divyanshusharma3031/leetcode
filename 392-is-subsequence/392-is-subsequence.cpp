@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> dp;
-    bool checksub(int n,int m,string s,string t)
+    bool checksub(int n,int m,string &s,string &t)
     {
         if(n==0)
         {
