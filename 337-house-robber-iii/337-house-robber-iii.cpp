@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int robbing(TreeNode *root,map<TreeNode*,int> &dp)
+    int robbing(TreeNode *root,unordered_map<TreeNode*,int> &dp)
     {
         if(root==NULL)
         {
@@ -51,7 +51,7 @@ public:
         
     }
     int rob(TreeNode* root) {
-        map<TreeNode*,int> mpp;
+        unordered_map<TreeNode*,int> mpp;
         return robbing(root,mpp);
     }
 };
