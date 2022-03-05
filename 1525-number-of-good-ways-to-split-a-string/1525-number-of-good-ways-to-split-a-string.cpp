@@ -2,7 +2,7 @@ class Solution {
 public:
     int numSplits(string s) {
         set<int> s1;
-        set<int> s2;
+        // set<int> s2;
         vector<int> pref(s.length(),0);
         vector<int> suff(s.length()+1,0);
         
@@ -13,11 +13,11 @@ public:
         }
         
         reverse(s.begin(),s.end());
-        
+        s1.clear();
         for(int i=0;i<s.length();i++)
         {
-            s2.insert(s[i]);
-            suff[i+1]=s2.size();
+            s1.insert(s[i]);
+            suff[i+1]=s1.size();
         }
         
         reverse(suff.begin(),suff.end());
