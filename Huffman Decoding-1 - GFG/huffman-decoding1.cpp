@@ -101,19 +101,19 @@ string decode_file(struct MinHeapNode* root, string s)
 {
 //add code here.
     int n=s.length();
-    string str;
+    string str="";
     for(int i=0;i<n;)
     {
-        MinHeapNode* p=root;
+        MinHeapNode *p=root;
         while((p->left!=NULL) && (p->right!=NULL))
         {
-            if(s[i]=='1')
+            if(s[i]=='0')
             {
-                p=p->right;
+                p=p->left;
             }
             else
             {
-                p=p->left;
+                p=p->right;
             }
             i++;
         }
