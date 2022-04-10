@@ -1,38 +1,31 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
-    int editdistance(int n,int m,string s1,string s2)
+    int editdist(int n,int m,string &word1,string &word2,vector<vector<int>> &dp)
     {
-        // cout<<n<<" "<<m<<"\n";
-        if((n-1)<0 && (m-1)<0)
+        if(n==0 && m==0)
         {
-            // cout<<"1\n";
             return 0;
         }
-        if((n-1)<0)
-        {
-            // cout<<m<<"\n";
-            return 1+editdistance(n,m-1,s1,s2);
-        }
-        if((m-1)<0)
-        {
-            // cout<<n<<"\n";
-            return 1+editdistance(n-1,m,s1,s2);
-        }
-        if(dp[n][m])
+        if(dp[n][m]!=-1)
         {
             return dp[n][m];
         }
-        if(s1[n-1]==s2[m-1])
+        if(n==0)
         {
-           return dp[n][m]=editdistance(n-1,m-1,s1,s2);
+            return dp[n][m]=1+editdist(n,m-1,word1,word2,dp);
         }
-        // cout<<dp[n][m]<<"\n";
-        return dp[n][m]=1+min({editdistance(n-1,m,s1,s2),editdistance(n,m-1,s1,s2),editdistance(n-1,m-1,s1,s2)});
+        if(m==0)
+        {
+            return dp[n][m]=1+editdist(n-1,m,word1,word2,dp);
+        }
+        if(word1[n-1]==word2[m-1])
+        {
+            return dp[n][m]=editdist(n-1,m-1,word1,word2,dp);
+        }
+        return dp[n][m]=1+min({editdist(n-1,m,word1,word2,dp),editdist(n,m-1,word1,word2,dp),editdist(n-1,m-1,word1,word2,dp)});
     }
     int minDistance(string word1, string word2) {
-        vector<vector<int>> aux(word1.size()+1,vector<int>(word2.size()+1,0));
-        dp=aux;
-       return editdistance(word1.length(),word2.length(),word1,word2);
+        vector<vector<int>> dp(word1.size()+1,vector<int>(word2.size()+1,-1));
+        return editdist(word1.size(),word2.size(),word1,word2,dp);
     }
 };
