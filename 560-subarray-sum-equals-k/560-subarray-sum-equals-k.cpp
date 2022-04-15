@@ -1,7 +1,7 @@
 class Solution {
 public:
     int subarraySum(vector<int>& arr, int k) {
-        map<int,int> mpp;
+        unordered_map<int,int> mpp;
         int s=0;
         int ans=0;
         int n=arr.size();
@@ -15,7 +15,6 @@ public:
             }
             if(mpp[s-k])
             {
-                // cout<<1<<"\n";
                 ans+=mpp[s-k];
             }
             mpp[s]++;
