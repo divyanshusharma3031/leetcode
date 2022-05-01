@@ -32,11 +32,9 @@ class Solution
         
         for(int i=3;i<=n;i++)
         {
-            for(int j=0;j<i;j++)
-            {
-                dp[i]+=dp[j]*dp[i-j-1];
-                // cout<<j<<" "<<i-j<<"\n";
-            }
+            cpp_int k=i-1;
+           dp[i]=(2*(2*k+1)*dp[i-1])/(k+2);
+
         }
         
         return dp[n];
