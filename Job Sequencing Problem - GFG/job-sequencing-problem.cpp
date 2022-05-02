@@ -23,50 +23,52 @@ struct Job
 };
 */
 
-bool compare(Job a,Job b)
-{
-    return a.profit>b.profit;
-}
 class Solution 
 {
     public:
     //Function to find the maximum profit and the number of jobs done.
     vector<int> JobScheduling(Job arr[], int n) 
     { 
-        vector<int> ans;
-        sort(arr,arr+n,compare);
-        int t=0;
-        int i=0;
-        int c=0;
-        int s=0;
-        int m=INT_MIN;
-        while(i<n)
-        {
-            m=max(m,arr[i].dead);
-            i++;
-        }
-        i=0;
-        int x[m+1];
-        for(int i=0;i<=m;i++)
-        {
-            x[i]=-1;
-        }
+        // your code here
+        
+        int mx=-1;
         for(int i=0;i<n;i++)
         {
-            for(int j=arr[i].dead;j>0;j--)
+            mx=max(arr[i].dead,mx);
+        }
+        
+        vector<int> aux(mx+1,-1);
+        
+        vector<pair<int,int>> v;
+        
+        for(int i=0;i<n;i++)
+        {
+            v.push_back({arr[i].profit,arr[i].dead});
+        }
+        
+        sort(v.begin(),v.end());
+        reverse(v.begin(),v.end());
+        
+        int ans=0;
+        
+        int c=0;
+        
+        for(int i=0;i<n;i++)
+        {
+            int e=v[i].second;
+            while(e>0 && aux[e]!=-1)
             {
-                if(x[j]==-1)
-                {
-                    x[j]=1;
-                    c++;
-                    s+=arr[i].profit;
-                    break;
-                }
+                e--;
+            }
+            if(e>0)
+            {
+                c++;
+                ans+=v[i].first;
+                aux[e]=1;
             }
         }
-        ans.push_back(c);
-        ans.push_back(s);
-        return ans;
+        
+        return {c,ans};
     } 
 };
 
