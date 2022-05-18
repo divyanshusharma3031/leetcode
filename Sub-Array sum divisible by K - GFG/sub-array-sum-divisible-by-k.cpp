@@ -15,12 +15,12 @@ class Solution{
 	    for(int i=0;i<n;i++)
 	    {
 	        s+=arr[i];
-	        long long rem=s%k;
+	        int rem=s%k;
 	        if(rem<0)
 	        {
 	            rem+=k;
 	        }
-	        if((s%k)==0)
+	        if(s%k==0)
 	        {
 	            ans++;
 	        }
@@ -32,9 +32,6 @@ class Solution{
 	    }
 	    return ans;
 	}
-
-
-
 };
 
 
