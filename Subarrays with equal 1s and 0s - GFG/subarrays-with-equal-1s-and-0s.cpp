@@ -5,17 +5,20 @@ using namespace std;
 
  // } Driver Code Ends
 
+typedef long long ll;
 class Solution{
   public:
     //Function to count subarrays with 1s and 0s.
     long long int countSubarrWithEqualZeroAndOne(int arr[], int n)
     {
         //Your code here
-        long long ans=0;
-        map<int,int> mpp;
-        long long count=0;
-        mpp[0]++;
-        for(int i=0;i<n;i++)
+        ll ans=0;
+        
+        ll count=0;
+        
+        map<ll,ll> mpp;
+        
+        for(ll i=0;i<n;i++)
         {
             if(arr[i]==1)
             {
@@ -25,11 +28,15 @@ class Solution{
             {
                 count--;
             }
+            if(count==0)
+            {
+                ans++;
+            }
             if(mpp[count])
             {
                 ans+=mpp[count];
             }
-            mpp[count]++;;
+            mpp[count]++;
         }
         return ans;
     }
