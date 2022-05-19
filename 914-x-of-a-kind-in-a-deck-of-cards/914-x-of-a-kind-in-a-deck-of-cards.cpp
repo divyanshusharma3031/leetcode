@@ -7,7 +7,7 @@ public:
         {
             mpp[arr[i]]++;
         }
-        sort(arr.begin(),arr.end());
+        // sort(arr.begin(),arr.end());
         int x=mpp[arr[0]];
         for(auto it:mpp)
         {
