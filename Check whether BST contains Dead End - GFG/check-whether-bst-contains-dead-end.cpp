@@ -101,7 +101,8 @@ Node * right, * left;
 };*/
 
 /*You are required to complete below method */
-bool checkdead(Node *root,int lbound,int ubound)
+
+bool checkdead(Node *root,int lbound,int ubound,map<Node*,int> &dp)
 {
     if(!root)
     {
@@ -111,10 +112,28 @@ bool checkdead(Node *root,int lbound,int ubound)
     {
         return true;
     }
-    return checkdead(root->left,lbound,root->data-1)|| checkdead(root->right,root->data+1,ubound);
+    if(dp[root]!=0)
+    {
+        if(dp[root]==1)
+        {
+            return true;
+        }
+        return false;
+    }
+    bool res=checkdead(root->left,lbound,root->data-1,dp)|| checkdead(root->right,root->data+1,ubound,dp);
+    if(res==true)
+    {
+        dp[root]=1;
+    }
+    else
+    {
+        dp[root]=-1;
+    }
+    return res;
 }
 bool isDeadEnd(Node *root)
 {
     //Your code here
-    return checkdead(root,1,INT_MAX);
+    map<Node*,int> dp;
+    return checkdead(root,1,INT_MAX,dp);
 }
