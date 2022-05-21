@@ -1,31 +1,29 @@
-class Solution
-{
+const int mod=1e9+7;
+class Solution {
 public:
-    vector<long long> store;
-    long long cal(int x)
+    vector<long long> v; 
+    long long cal(long long x)
     {
-        if (x < store.size())
+        if(x<v.size())
         {
-            return store[x];
+            return v[x];
         }
-        while (store.size() <= x)
+        while (v.size() <= x)
         {
-            store.push_back((store.back() << 1) % 1000000007);
+            v.push_back((v.back() << 1) % 1000000007);
         }
-        return store[x];
+        return v[x];
     }
-    int sumSubseqWidths(vector<int> &nums)
-    {
-        store.push_back(1);
-        long long ans = 0;
-        int i = 0;
-        int n = nums.size();
-        int j = n - 1;
-        sort(nums.begin(), nums.end());
+    int sumSubseqWidths(vector<int>& nums) {
+        long long ans=0;
+        v.push_back(1);
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
         for(int i=0;i<n;i++)
         {
-            ans=(ans+((nums[i]-nums[n-i-1])*cal(i))%1000000007)%1000000007;
+            ans=(ans+((nums[i]-nums[n-i-1])*cal(i))%mod)%mod;
         }
-        return (ans)%1000000007;
+        return ans;
     }
+    
 };
