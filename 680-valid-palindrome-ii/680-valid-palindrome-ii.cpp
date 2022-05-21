@@ -1,7 +1,7 @@
 #include<string.h>
 class Solution {
 public:
-    bool palindrome(string s)
+    bool palindrome(string &s)
     {
         int i=0;
         int n=s.length()-1;
