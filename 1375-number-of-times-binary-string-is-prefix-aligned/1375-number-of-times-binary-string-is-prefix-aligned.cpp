@@ -7,7 +7,7 @@ public:
         for(int i=0;i<n;i++)
         {
             s.insert(flips[i]);
-            if(s.size()==*s.rbegin())
+            if(s.size()==*(s.rbegin()))
             {
                 ans++;
             }
