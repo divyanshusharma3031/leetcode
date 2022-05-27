@@ -1,45 +1,45 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        
         if(nums.size()==0)
         {
             return 0;
         }
-        int ans=1;
-        
-        int c=0;
-        
-        map<int,int> mpp;
-        
         int n=nums.size();
-        
+        map<int,int> mpp;
         for(int i=0;i<n;i++)
         {
             mpp[nums[i]]++;
         }
-        int ele=-1;
+        int prev=-(1e9-3);
+        int e=-(1e9-3);
+        int l=1;
+        int ans=1;
         for(auto it:mpp)
         {
-            if(c==0)
+            
+            if(prev==e)
             {
-                ele=it.first;
-                c++;
-                continue;
-            }
-            if((it.first-1)==ele)
-            {
-                ele=it.first;
-                c++;
+                prev=it.first;
             }
             else
             {
-                ans=max(ans,c);
-                c=1;
-                ele=it.first;
+                int w=it.first-1;
+                if((w)==prev)
+                {
+                    prev=it.first;
+                    l++;
+                }
+                else
+                {
+                    ans=max(l,ans);
+                    l=1;
+                    prev=it.first;
+                }
             }
+            // cout<<it.first<<" "<<l<<"\n";
         }
-        ans=max(ans,c);
+        ans=max(l,ans);
         return ans;
     }
 };
