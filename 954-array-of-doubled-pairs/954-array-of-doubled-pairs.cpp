@@ -2,7 +2,6 @@ class Solution {
 public:
     bool canReorderDoubled(vector<int>& arr) {
         map<double,int> mpp;
-        map<int,int> vis;
         int n=arr.size();
         sort(arr.begin(),arr.end());
         int x=0;
