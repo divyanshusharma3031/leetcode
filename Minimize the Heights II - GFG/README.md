@@ -5,12 +5,12 @@
 Find out the minimum possible difference of the height&nbsp;of shortest and longest towers after you have modified each tower.</span></p>
 
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">You can find a slight modification of the problem&nbsp;<a href="https://practice.geeksforgeeks.org/problems/minimize-the-heights-i/1/" target="_blank" style="user-select: auto;">here</a>.<br style="user-select: auto;">
-Note: It is compulsory to increase or decrease (if possible) by K to each tower.</span></p>
+Note: It is compulsory to increase or decrease&nbsp;by K to each tower.</span></p>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 1:</strong></span></p>
 
-<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:
+<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:
 </strong>K = 2, N = 4
 Arr[] = {1, 5, 8, 10}
 <strong style="user-select: auto;">Output:</strong>
@@ -19,11 +19,11 @@ Arr[] = {1, 5, 8, 10}
 The array can be modified as 
 {3, 3, 6, 8}. The difference between 
 the largest and the smallest is 8-3 = 5.
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</span></pre>
 
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 2:</strong></span></p>
 
-<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:
+<pre style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:
 </strong>K = 3, N = 5
 Arr[] = {3, 9, 12, 16, 20}
 <strong style="user-select: auto;">Output:</strong>
@@ -32,7 +32,7 @@ Arr[] = {3, 9, 12, 16, 20}
 The array can be modified as
 {6,&nbsp;12,&nbsp;9,&nbsp;13,&nbsp;17}. The difference between 
 the largest and the smallest is 17-6 = 11.&nbsp;
-</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</span></pre>
 
 <p style="user-select: auto;"><br style="user-select: auto;">
 <span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Your Task:</strong><br style="user-select: auto;">
