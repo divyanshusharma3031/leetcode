@@ -1,40 +1,29 @@
 class Solution {
 public:
-    static bool compare(pair<int,int> p1,pair<int,int> p2)
+    static bool compare(vector<int> &v1,vector<int> &v2)
     {
-        if(p1.first==p2.first)
+        if(v1[0]==v2[0])
         {
-            return p1.second>p2.second;
+            return v1[1]>v2[1];
         }
-        return p1.first<p2.first;
+        return v1[0]<v2[0];
     }
     int maxEnvelopes(vector<vector<int>>& envelopes) {
-        vector<pair<int,int>> v;
-        for(int i=0;i<envelopes.size();i++)
-        {
-            v.push_back({envelopes[i][0],envelopes[i][1]});
-        }
-        
-        sort(v.begin(),v.end(),compare);
-        
-        vector<int> res;
-        res.push_back(v[0].second);
-        
+        sort(envelopes.begin(),envelopes.end(),compare);
+        vector<int> ans;
         int n=envelopes.size();
-        
-        for(int i=1;i<n;i++)
+        for(int i=0;i<n;i++)
         {
-            auto it=(lower_bound(res.begin(),res.end(),v[i].second));
-            
-            if(it==res.end())
+            auto it=lower_bound(ans.begin(),ans.end(),envelopes[i][1]);
+            if(it==ans.end())
             {
-               res.push_back(v[i].second);
+                ans.push_back(envelopes[i][1]);
             }
             else
             {
-                *it=v[i].second;
-            }   
+                *it=envelopes[i][1];
+            }
         }
-        return res.size();
+        return ans.size();
     }
 };
