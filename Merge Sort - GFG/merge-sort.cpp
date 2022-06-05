@@ -16,87 +16,81 @@ void printArray(int arr[], int size)
 
 
  // } Driver Code Ends
-
-
 class Solution
 {
     public:
-    void merge(int arr[], int lo, int mid, int hi)
+    void merge(int arr[], int l, int mid, int r)
     {
-             int s1=mid-lo+1;
-    int s2=hi-mid;
-    int arr1[s1];
-    int arr2[s2];
-    int x=0;
-    for(int i=lo;i<=mid;i++)
-    {
-        arr1[x]=arr[i];
-        x++;
-    }
-    x=0;
-    for(int i=mid+1;i<=hi;i++)
-    {
-        arr2[x]=arr[i];
-        x++;
-    }
-
-    int arr3[hi-lo+1];
-
-    int i=0;
-
-    int j=0;
-
-    x=0;
-    while(i<s1 && j<s2)
-    {
-        if(arr1[i]<arr2[j])
-        {
-            arr3[x]=arr1[i];
-            i++;
-            x++;
-        }
-        else
-        {
-            arr3[x]=arr2[j];
-            j++;
-            x++;
-        }
-    }
-
-    while(i<s1)
-    {
-        arr3[x]=arr1[i];
-        i++;
-        x++;
-    }
-
-    while(j<s2)
-    {
-        arr3[x]=arr2[j];
-        j++;
-        x++;
-    }
-
-    i=lo;
-    x=0;
-    while(i<=hi)
-    {
-        arr[i]=arr3[x];
-        i++;
-        x++;
-    }
+         // Your code here
+         int r1=mid-l+1;
+         int r2=r-mid;
+         int arr1[r1];
+         int arr2[r2];
+         int x=0;
+         for(int i=l;i<=mid;i++)
+         {
+             arr1[x]=arr[i];
+             x++;
+         }
+         x=0;
+         for(int i=mid+1;i<=r;i++)
+         {
+             arr2[x]=arr[i];
+             x++;
+         }
+         int arr3[r-l+1];
+         int i=0;
+         int j=0;
+         int k=0;
+         while(i<r1 && j<r2)
+         {
+             if(arr1[i]<arr2[j])
+             {
+                 arr3[k]=arr1[i];
+                 k++;
+                 i++;
+             }
+             else
+             {
+                 arr3[k]=arr2[j];
+                 k++;
+                 j++;
+             }
+         }
+         while(i<r1)
+         {
+             arr3[k]=arr1[i];
+             k++;
+             i++;
+         }
+         while(j<r2)
+         {
+             arr3[k]=arr2[j];
+             k++;
+             j++;
+         }
+         k=0;
+         for(i=l;i<=r;i++)
+         {
+             arr[i]=arr3[k];
+             k++;
+         }
     }
     public:
-    void mergeSort(int arr[], int lo, int hi)
+    void mergesort(int arr[],int l,int r)
+    {
+        if(l<r)
+        {
+        int mid=(l+r)/2;
+        mergesort(arr,l,mid);
+        mergesort(arr,mid+1,r);
+        merge(arr,l,mid,r);
+        }
+    }
+    void mergeSort(int arr[], int l, int r)
     {
         //code here
-        if(lo<hi)
-    {
-        int mid=(lo+hi)/2;
-        mergeSort(arr,lo,mid);
-        mergeSort(arr,mid+1,hi);
-        merge(arr,lo,mid,hi);
-    }
+        mergesort(arr,l,r);
     }
 };
 
