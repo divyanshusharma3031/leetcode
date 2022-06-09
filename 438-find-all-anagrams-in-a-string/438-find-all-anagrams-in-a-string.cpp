@@ -8,42 +8,40 @@ public:
         
         int m=p.length();//size of p
         
+        if(m>n)
+        {
+            return ans;
+        }
+        
         vector<int> mpp(26,0);
-        vector<int> copy(26,0);
+        
         for(int i=0;i<m;i++)
         {
             mpp[p[i]-'a']++;
         }
-        copy=mpp;
-        for(int i=0;i<n;i++)
+        int i=0;
+        int j=m;
+        vector<int> copy(26,0);
+        int c=0;
+        for(i=0;i<j;i++)
         {
-            if(mpp[s[i]-'a'])
+            copy[s[i]-'a']++;
+            if(copy==mpp)
             {
-                mpp[s[i]-'a']--;
-                int c=0;
-                for(int j=i+1;j<n;j++)
-                {
-                    if((c+1)==m)
-                    {
-                        break;
-                    }
-                    if(mpp[s[j]-'a'])
-                    {
-                        // cout<<j<<" ";
-                        mpp[s[j]-'a']--;
-                        c++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                if((c+1)==m)
-                {
-                    ans.push_back(i);
-                }
-                mpp=copy;
-            } 
+                ans.push_back(0);
+            }
+        }
+        i=0;
+        while(j<n)
+        {
+            copy[s[i]-'a']--;
+            i++;
+            copy[s[j]-'a']++;
+            j++;
+            if(copy==mpp)
+            {
+                ans.push_back(i);
+            }
         }
         return ans;
     }
