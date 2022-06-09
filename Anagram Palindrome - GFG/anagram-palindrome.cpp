@@ -24,22 +24,27 @@ int main()
 int isPossible (string S)
 {
     // your code here
-    int n=S.length();
-    int arr[26]={0};
-    for(int i=0;i<n;i++)
-    {
-        arr[S[i]-'a']++;
-    }
     int pairs=0;
     int odd=0;
-    for(int i=0;i<26;i++)
+    map<int,int> mpp;
+    
+    int n=S.length();
+    
+    for(int i=0;i<n;i++)
     {
-        pairs+=arr[i]/2;
-        odd+=(arr[i])%2;
+        mpp[S[i]]++;
+    }
+    
+    for(auto it:mpp)
+    {
+        pairs+=mpp[it.first]/2;
+        odd+=mpp[it.first]%2;
     }
     if(odd<=1)
     {
         return 1;
     }
+    
     return 0;
+    
 }
