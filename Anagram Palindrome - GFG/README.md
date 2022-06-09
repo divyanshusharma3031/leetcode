@@ -1,7 +1,8 @@
 # Anagram Palindrome
 ## Easy
 <div class="problem-statement" style="user-select: auto;">
-                <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given a string <strong style="user-select: auto;">S</strong>, Check if characters of the given string can be rearranged to form a palindrome.&nbsp;</span></p>
+                <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given a string <strong style="user-select: auto;">S</strong>, Check if characters of the given string can be rearranged to form a palindrome.<br style="user-select: auto;">
+<strong style="user-select: auto;">Note: </strong>You have to return 1 if it is possible to convert the given string into palindrome else return 0.&nbsp;</span></p>
 
 <p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 1:</strong></span></p>
 
