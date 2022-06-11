@@ -7,7 +7,7 @@ public:
         }
         int i=0;
         int j=0;
-       map<int,int> v;
+       unordered_map<int,int> v;
         vector<int> res(256,0);
         int ans=1;
         int n=S.length();
