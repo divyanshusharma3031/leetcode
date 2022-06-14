@@ -7,7 +7,7 @@ public:
         {
             x=x^(nums[i])^(i+1);
         }
-        map<int,int> mpp;
+        unordered_map<int,int> mpp;
         int b=0;
         for(int i=0;i<n;i++)
         {
