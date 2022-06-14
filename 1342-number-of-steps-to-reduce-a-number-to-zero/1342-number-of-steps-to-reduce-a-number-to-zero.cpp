@@ -1,19 +1,14 @@
 class Solution {
 public:
     int numberOfSteps(int n) {
-        int ans=0;
-        while(n>0)
+        if(n==0)
         {
-            if(n%2==0)
-            {
-                n=n/2;
-            }
-            else
-            {
-                n=n-1;
-            }
-            ans++;
+            return 0;
         }
-        return ans;
+        int setbits=__builtin_popcount(n);
+        // cout<<setbits<<"\n";
+        int zerobits=__builtin_clz(n);
+        // cout<<zerobits<<"\n";
+        return 31+setbits-zerobits;
     }
 };
