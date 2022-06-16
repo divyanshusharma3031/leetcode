@@ -1,37 +1,26 @@
 class Solution {
 public:
-    void subsetsUtil(vector<int>& A, vector<vector<int> >& res,
-                 vector<int>& subset, int index)
+    vector<vector<int>> dp;
+    int subsetsum(int res,int n,vector<int> &arr,int target)
+    {
+        if(n==0)
         {
-            res.push_back(subset);
-            for (int i = index; i < A.size(); i++) {
-
-                // include the A[i] in subset.
-                subset.push_back(A[i]);
-
-                // move onto the next element.
-                subsetsUtil(A, res, subset, i + 1);
-
-                // exclude the A[i] from subset and triggers
-                // backtracking.
-                subset.pop_back();
-            }
-
-            return;
+            return 0;
         }
-
-        // below function returns the subsets of vector A.
-        vector<vector<int> > subsets(vector<int>& A)
+        if(res>target)
         {
-            vector<int> subset;
-            vector<vector<int> > res;
-
-            // keeps track of current element in vector A;
-            int index = 0;
-            subsetsUtil(A, res, subset, index);
-
-            return res;
+            return 0;
         }
+        if(dp[n][res]!=-1)
+        {
+            return dp[n][res];
+        }
+        if((res|arr[n-1])==target)
+        {
+            return dp[n][res]=1+subsetsum(res|arr[n-1],n-1,arr,target)+subsetsum(res,n-1,arr,target);
+        }
+        return dp[n][res]=subsetsum(res|arr[n-1],n-1,arr,target)+subsetsum(res,n-1,arr,target);
+    }
     int countMaxOrSubsets(vector<int>& arr) {
         int mxor=0;
         int n=arr.size();
@@ -39,20 +28,9 @@ public:
         {
             mxor=mxor|arr[i];//this will be mxor;
         }
-        int a=0;
-        vector<vector<int>> ans=subsets(arr);
-        for(int i=0;i<ans.size();i++)
-        {
-            int x=0;
-            for(int j=0;j<ans[i].size();j++)
-            {
-                x=x|ans[i][j];
-            }
-            if(mxor==x)
-            {
-                a++;
-            }
-        }
+        dp.resize(n+1,vector<int>(mxor+1,-1));
+        sort(arr.begin(),arr.end());
+        int a=subsetsum(0,n,arr,mxor);
         return a;
     }
 };
