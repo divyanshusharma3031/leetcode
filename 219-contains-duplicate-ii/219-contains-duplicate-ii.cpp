@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& arr, int k) {
-         map<int,int> mpp;
+         unordered_map<int,int> mpp;
          if(arr.size()==1)
          {
              return false;
