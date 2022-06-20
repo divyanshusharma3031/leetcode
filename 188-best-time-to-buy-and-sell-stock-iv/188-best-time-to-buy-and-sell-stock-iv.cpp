@@ -29,7 +29,7 @@ public:
             T_i1[i]=INT_MIN;
         }
         T_i0[0]=0;
-        // T_i1[0]=-prices[0];
+        T_i1[0]=-prices[0];
         for(int i=0;i<n;i++)
         {
             for(int j=k;j>0;j--)
