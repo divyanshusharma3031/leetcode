@@ -5,13 +5,16 @@ public:
         {
             return n;
         }
-        vector<int> dp(n+1,0);
-        dp[0]=0;
-        dp[1]=1;
+        int p=1;
+        int pp=0;
+        int ans=0;
         for(int i=2;i<=n;i++)
         {
-            dp[i]=dp[i-1]+dp[i-2];
+            ans=p+pp;
+            int temp=p;
+            p=ans;
+            pp=temp;
         }
-        return dp[n];
+        return ans;
     }
 };
