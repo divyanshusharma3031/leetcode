@@ -6,27 +6,20 @@ using namespace std;
 class Solution{
 	public:
 	    const int mod=1e9+7;
-	    int ways(long long i,long long n,vector<int> &dp)
-	    {
-	        if(i==n)
-	        {
-	            return 1;
-	        }
-	        if(i>n)
-	        {
-	            return 0;
-	        }
-	        if(dp[i]!=-1)
-	        {
-	            return dp[i];
-	        }
-	        return dp[i]=(ways(i+1,n,dp)+ways(i+2,n,dp))%mod;
-	    }
 		int nthPoint(int n){
 		    // Code here
-		    vector<int> dp(n+1,-1);
-		    long long i=0;
-		    return ways(i,n,dp);
+		    if(n==0 || n==1)
+		    {
+		        return n;
+		    }
+		    vector<int> dp(n+1,0);
+		    dp[0]=1;
+		    dp[1]=1;
+		    for(int i=2;i<=n;i++)
+		    {
+		        dp[i]=(dp[i-1]+dp[i-2])%mod;
+		    }
+		    return dp[n];
 		}
 };
 
