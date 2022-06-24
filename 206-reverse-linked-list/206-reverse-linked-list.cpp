@@ -14,13 +14,13 @@ public:
         ListNode *p=head;
         ListNode *q=NULL;
         ListNode *r=NULL;
-        while(p!=NULL)
+        while(p)
         {
-            q=r;
-            r=p;
+            r=q;
+            q=p;
             p=p->next;
-            r->next=q;
+            q->next=r;
         }
-        return r;
+        return q;
     }
 };
