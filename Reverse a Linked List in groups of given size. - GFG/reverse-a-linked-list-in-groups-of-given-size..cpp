@@ -28,47 +28,52 @@ void printList(struct node *node)
 
 
  // } Driver Code Ends
-/*
-  Reverse a linked list
-  The input list will have at least one element  
-  Return the node which points to the head of the new LinkedList
-  Node is defined as 
-    struct node
-    {
-        int data;
-        struct node* next;
+
+//   Reverse a linked list
+//   The input list will have at least one element  
+//   Return the node which points to the head of the new LinkedList
+//   Node is defined as 
+//     struct node
+//     {
+//         int data;
+//         struct node* next;
     
-        node(int x){
-            data = x;
-            next = NULL;
-        }
+//         node(int x){
+//             data = x;
+//             next = NULL;
+//         }
     
-    }*head;
-*/
+//     }*head;
+
 
 class Solution
 {
     public:
-    struct node *reverse (struct node *head, int k)
-    { 
-        // Complete this method
-        int c=0;
-        node *p=head;
-        node *q=NULL;
-        node *r=NULL;
-        while(p!=NULL && c<k)
+    struct node* reversegroup(struct node*head,int k)
+    {
+        if(head==NULL)
+        {
+            return NULL;
+        }
+        struct node *p=head;
+        struct node *q=NULL;
+        struct node *r=NULL;
+        int temp=k;
+        while(p && (k)>0)
         {
             r=q;
             q=p;
             p=p->next;
             q->next=r;
-            c++;
+            k--;
         }
-        if(p)
-        {
-            head->next=reverse(p,k);
-        }
+        head->next=reversegroup(p,temp);
         return q;
+    }
+    struct node *reverse (struct node *head, int k)
+    { 
+        // Complete this method
+        return reversegroup(head,k);
     }
 };
 
