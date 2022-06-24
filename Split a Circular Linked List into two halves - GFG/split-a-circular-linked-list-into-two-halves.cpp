@@ -81,6 +81,7 @@ int main()
 }
 // } Driver Code Ends
 
+using namespace std;
 
 /* The structure of linked list is the following
 struct Node
@@ -99,58 +100,47 @@ struct Node
 // to head Node of given lined list.  head1_ref1 and *head_ref2
 // are pointers to head pointers of resultant two halves.
 
+int countnodes(Node * head)
+{
+    Node *x=head->next;
+    
+    int c=1;
+    while(x!=head)
+    {
+        c++;
+        x=x->next;
+    }
+    return c;
+}
+
 void splitList(Node *head, Node **head1_ref, Node **head2_ref)
 {
     // your code goes here
-    Node *p=head;
-    int c=0;
-    do
-    {
-        c++;
-        p=p->next;
-    }while(p!=head);
-    if(c%2==0)
-    {
-        p=head;
-        int a=c/2;
-        while(a-1)
+    
+    int c=countnodes(head);
+    // printf("%d",c);
+        Node *p=head->next;
+        Node *y=NULL;
+        while(p!=head)
         {
+            y=p;
             p=p->next;
-            a--;
         }
-        Node *q=p->next;
-        p->next=head;
-        *head1_ref=head;
-        *head2_ref=q;
-        a=c/2;
-        Node *x=q;
-        while(a-1)
+        // printf("%d",y->data);
+        Node *x=head;
+        int temp=(c+1)/2;
+        Node *prev=NULL;
+        while((temp))
         {
-            q=q->next;
-            a--;
+            prev=x;
+            x=x->next;
+            temp--;
         }
-        q->next=x;
-    }
-    else
-    {
-        p=head;
-        int a=c/2;
-        while(a)
-        {
-            p=p->next;
-            a--;
-        }
-        Node *q=p->next;
-        p->next=head;
-        *head1_ref=head;
-        *head2_ref=q;
-        a=c/2;
-        Node *x=q;
-        while(a-1)
-        {
-            q=q->next;
-            a--;
-        }
-        q->next=x;
-    }
+        // printf("%d",prev->data);
+        prev->next=head;
+        *(head1_ref)=head;
+        *(head2_ref)=x;
+        y->next=x;
+        return;
+    
 }
