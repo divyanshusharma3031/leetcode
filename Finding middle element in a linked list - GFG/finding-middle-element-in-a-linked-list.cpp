@@ -46,6 +46,7 @@ class Solution{
         Node *slow=head;
         while(fast!=NULL)
         {
+            
             fast=fast->next;
             if(fast)
             {
