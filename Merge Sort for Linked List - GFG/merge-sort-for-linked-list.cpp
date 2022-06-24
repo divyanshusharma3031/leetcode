@@ -29,91 +29,70 @@ struct Node
 class Solution{
   public:
     //Function to sort the given linked list using Merge Sort.
-    Node* reverse(Node* head) {
-        Node *q=NULL;
-        Node *r=NULL;
-        Node *p=head;
-        while(p)
-        {
-            r=q;
-            q=p;
-            p=p->next;
-            q->next=r;
-        }
-        return q;
-    }
-    Node *middle(Node *head)
+    Node *merge(Node *head, Node *temp)
     {
-        Node *slow=head;
-        Node *fast=head;
-        Node *temp=head;
-        while(fast!=NULL && fast->next!=NULL)
+        Node *start, *newhead;
+        if (head->data <= temp->data)
         {
-            temp=slow;
-            slow=slow->next;
-            fast=fast->next->next;
+            start = head;
+            head = head->next;
         }
-        return temp;
-    }
-    Node *merge(Node *l1,Node *l2)
-    {
-        Node *l3;
-        Node *prev=NULL;
-        while(l1 && l2)
+        else
         {
-            if(l1->data<l2->data)
+            start = temp;
+            temp = temp->next;
+        }
+        newhead = start;
+        while (head != NULL && temp != NULL)
+        {
+            if (head->data <= temp->data)
             {
-                l3=new Node(l1->data);
-                l3->next=prev;
-                prev=l3;
-                l1=l1->next;
+                start->next = head;
+                head = head->next;
             }
             else
             {
-                l3=new Node(l2->data);
-                l3->next=prev;
-                prev=l3;
-                l2=l2->next;
+                start->next = temp;
+                temp = temp->next;
             }
+            start = start->next;
         }
-        while(l1)
+        while (head != NULL)
         {
-                l3=new Node(l1->data);
-                l3->next=prev;
-                prev=l3;
-                l1=l1->next;
+            start->next = head;
+            head = head->next;
+            start = start->next;
         }
-        while(l2)
+        while (temp != NULL)
         {
-            l3=new Node(l2->data);
-            l3->next=prev;
-            prev=l3;
-            l2=l2->next;
+            start->next = temp;
+            temp = temp->next;
+            start = start->next;
         }
-        l3=reverse(l3);
-        return l3;
+        return newhead;
     }
-    Node * mergesort(Node *head)
+    Node *msort(Node *&head)
     {
-        if(head==NULL || head->next==NULL)
+        if (head == NULL || head->next == NULL)
+        return head;
+        Node *slow = head, *fast = head;
+        while (fast->next != NULL && fast->next->next != NULL)
         {
-            return head;
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        Node *t=middle(head);//middle pointer;
-        Node *temp=t->next;
-        t->next=NULL;
-        Node *l1=mergesort(head);
-        Node *l2=mergesort(temp);
-        head=merge(l1,l2);
+        Node *temp = slow->next;
+        slow->next = NULL;
+        Node *l1=msort(head);
+        Node *l2=msort(temp);
+        head=merge(head, temp);
         return head;
     }
     Node* mergeSort(Node* head) {
         // your code here
-        head=mergesort(head);
-        return head;
+        return msort(head);
     }
 };
-
 
 // { Driver Code Starts.
 
