@@ -14,7 +14,6 @@ public:
         {
             int old=recent.back();
             recent.pop_back();
-            // mpp.erase(old);
             pos.erase(old);
         }
         recent.push_front(key);
