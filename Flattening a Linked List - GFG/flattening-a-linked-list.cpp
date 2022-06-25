@@ -110,9 +110,10 @@ struct Node{
 
 /*  Function which returns the  root of 
     the flattened linked list. */
+
 Node *merge(Node *p,Node *q)
 {
-    Node *ans;
+    Node *ans=NULL;
     if(!p)
     {
         return q;
@@ -133,6 +134,7 @@ Node *merge(Node *p,Node *q)
     }
     return ans;
 }
+
 Node *flatten(Node *root)
 {
    // Your code here
