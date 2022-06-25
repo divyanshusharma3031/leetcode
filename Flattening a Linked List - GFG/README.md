@@ -40,7 +40,7 @@ node in a single level.<strong style="user-select: auto;">
 8          50 
 |                           
 30              
-<strong style="user-select: auto;">Output:</strong> 5-&gt;7-&gt;8-&gt;10-&gt;19-&gt;20-&gt;22-&gt;30-&gt;50
+<strong style="user-select: auto;">Output:</strong> 5-&gt;7-&gt;8-&gt;10-&gt;19-&gt;22-&gt;28-&gt;30-&gt;50
 <strong style="user-select: auto;">Explanation:</strong>
 The resultant linked lists has every
 node in a single level.
@@ -54,7 +54,7 @@ You do not need to read input or print anything. Complete the function <strong s
 
 <p style="user-select: auto;">&nbsp;</p>
 
-<p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Expected Time Complexity:</strong>&nbsp;O(N*M)<br style="user-select: auto;">
+<p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Expected Time Complexity:</strong>&nbsp;O(N*N*M)<br style="user-select: auto;">
 <strong style="user-select: auto;">Expected Auxiliary Space:</strong>&nbsp;O(1)</span></p>
 
 <p style="user-select: auto;">&nbsp;</p>
