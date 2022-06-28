@@ -22,13 +22,40 @@ public:
         
         sort(coins.begin(),coins.end());
         
-        vector<vector<int>> dp(n+1,vector<int>(amount+1,-1));
+        vector<vector<int>> dp(n+1,vector<int>(amount+1,0));
         
-        int ans=coin(coins,n,amount,dp);
-        if(ans==(INT_MAX-140))
+        for(int i=0;i<=amount;i++)
+        {
+            if(i%coins[0])
+            {
+                dp[0][i]=1e9;
+            }
+            else
+            {
+                dp[0][i]=i/coins[0];
+            }
+        }
+        for(int i=1;i<n;i++)
+        {
+            dp[i][0]=0;
+            for(int j=1;j<=amount;j++)
+            {
+                if(j>=coins[i])
+                    
+                {
+                    dp[i][j]=min(1+dp[i][j-coins[i]],dp[i-1][j]);
+                }
+                else
+                {
+                    dp[i][j]=dp[i-1][j];
+                }
+                
+            }
+        }
+        if(dp[n-1][amount]>=1e9)
         {
             return -1;
         }
-        return ans;
+        return dp[n-1][amount];
     }
 };
