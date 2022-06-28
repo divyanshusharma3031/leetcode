@@ -61,10 +61,12 @@ class Solution
 {
     public:
     //Function to add two numbers represented by linked list.
-    struct Node* rev(struct Node* p)
+    struct Node * reverse(struct Node *head)
     {
-        struct Node * q=NULL;
-        struct Node * r=NULL;
+        struct Node *p=head;
+        struct Node *q=NULL;
+        struct Node *r=NULL;
+        
         while(p)
         {
             r=q;
@@ -77,65 +79,67 @@ class Solution
     struct Node* addTwoLists(struct Node* first, struct Node* second)
     {
         // code here
-        Node *x;
-        first=rev(first);
-        second=rev(second);
+        struct Node *p=reverse(first);
+        struct Node *q=reverse(second);
+        
+        struct Node *ans=NULL;
         
         int c=0;
-        Node *temp=NULL;
         
-        while(first && second)
+        while(p && q)
         {
-            x=new Node(first->data + second->data);
-            if(c!=0)
+            struct Node *temp=new Node(p->data+q->data);
+            if(c>0)
             {
-                x->data=x->data+c;
+                temp->data=temp->data+c;
                 c=0;
             }
-            c=(x->data)/10;
-            x->data=(x->data)%10;
-            x->next=temp;
-            temp=x;
-            first=first->next;
-            second=second->next;
+            int x=temp->data;
+            temp->data=x%10;
+            temp->next=ans;
+            ans=temp;
+            c=x/10;
+            p=p->next;
+            q=q->next;
         }
-        while(first)
+        while(p)
         {
-            x=new Node(first->data);
-            if(c!=0)
+            struct Node *temp=new Node(p->data);
+            if(c>0)
             {
-                x->data=x->data+c;
+                temp->data=temp->data+c;
                 c=0;
             }
-            c=(x->data)/10;
-            x->data=(x->data)%10;
-            x->next=temp;
-            temp=x;
-            first=first->next;
+            int x=temp->data;
+            temp->data=x%10;
+            temp->next=ans;
+            ans=temp;
+            c=x/10;
+            p=p->next;
         }
-        while(second)
+        while(q)
         {
-            x=new Node(second->data);
-            if(c!=0)
+            struct Node *temp=new Node(q->data);
+            if(c>0)
             {
-                x->data=x->data+c;
+                temp->data=temp->data+c;
                 c=0;
             }
-            c=(x->data)/10;
-            x->data=(x->data)%10;
-            x->next=temp;
-            temp=x;
-            second=second->next;
+            int x=temp->data;
+            temp->data=x%10;
+            temp->next=ans;
+            ans=temp;
+            c=x/10;
+            q=q->next;
         }
-        if(c)
+        while(c!=0)
         {
-            x=new Node(c);
-            x->next=temp;
-            temp=x;
+            struct Node *temp=new Node(c);
+            temp->next=ans;
+            ans=temp;
             c=0;
         }
-        return x;
-        
+        return ans;
     }
 };
 
