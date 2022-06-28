@@ -21,7 +21,7 @@ public:
         return dp[n][amount]=combo(amount-coins[n-1],coins,n,dp)+combo(amount,coins,n-1,dp);
     }
     int change(int amount, vector<int>& coins) {
-        sort(coins.begin(),coins.end());
+        // sort(coins.begin(),coins.end());
         int n=coins.size();
         vector<vector<int>> dp(n+1,vector<int>(amount+1,0));
         dp[0][0]=1;
