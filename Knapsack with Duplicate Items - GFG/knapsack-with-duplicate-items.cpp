@@ -28,8 +28,29 @@ public:
     int knapSack(int n, int W, int val[], int wt[])
     {
         // code here
-       vector<vector<int>> dp(n+1,vector<int>(W+1,-1));
-       return knap(W,wt,val,n,dp);
+       vector<vector<int>> dp(n+1,vector<int>(W+1,0));
+       for(int i=0;i<=W;i++)
+       {
+           if(i>=wt[0])
+           {
+               dp[0][i]=val[0]+dp[0][i-wt[0]];
+           }
+       }
+       for(int i=1;i<n;i++)
+       {
+           for(int j=0;j<=W;j++)
+           {
+               if(j>=wt[i])
+               {
+                  dp[i][j]=max(val[i]+dp[i][j-wt[i]],dp[i-1][j]); 
+               }
+               else
+               {
+                   dp[i][j]=dp[i-1][j];
+               }
+           }
+       }
+       return dp[n-1][W];
     }
 };
 
