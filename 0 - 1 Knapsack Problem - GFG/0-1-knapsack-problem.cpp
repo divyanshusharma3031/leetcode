@@ -42,18 +42,18 @@ class Solution
        for(int i=1;i<n;i++)
        {
            vector<int> temp(W+1,0);
-           for(int j=0;j<=W;j++)
+           for(int j=W;j>=0;j--)
            {
                if((j-wt[i])>=0)
                {
-                   temp[j]=max(val[i]+dp[j-wt[i]],dp[j]);
+                   dp[j]=max(val[i]+dp[j-wt[i]],dp[j]);
                }
                else
                {
-                   temp[j]=dp[j];
+                   dp[j]=dp[j];
                }
            }
-           dp=temp;
+        //   dp=temp;
        }
     //   space optimised
        return dp[W];
