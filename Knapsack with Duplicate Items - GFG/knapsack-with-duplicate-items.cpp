@@ -38,19 +38,18 @@ public:
        }
        for(int i=1;i<n;i++)
        {
-           vector<int> temp(W+1,0);
            for(int j=0;j<=W;j++)
            {
+               int nottake=dp[j];
                if(j>=wt[i])
                {
-                  temp[j]=max(val[i]+temp[j-wt[i]],dp[j]); 
+                  dp[j]=max(val[i]+dp[j-wt[i]],nottake); 
                }
                else
                {
-                   temp[j]=dp[j];
+                   dp[j]=dp[j];
                }
            }
-           dp=temp;
        }
        return dp[W];
     }
