@@ -11,41 +11,46 @@
  */
 class Solution {
 public:
+    typedef TreeNode Node;
     vector<vector<int>> levelOrder(TreeNode* root) {
-        queue<TreeNode *> q;
-        TreeNode *p=root;
         vector<vector<int>> matrix;
-        if(root==NULL)
+        if(!root)
         {
             return matrix;
         }
+        queue<Node *> q;
         q.push(root);
         q.push(NULL);
-        vector<int> ans;
+        vector<int> v;
         while(!q.empty())
         {
-            TreeNode *x=q.front();
+            Node *t=q.front();
             q.pop();
-            if(!x)
+            if(!t)
             {
-                matrix.push_back(ans);
-                ans.clear();
-                if(!q.empty())
+                 matrix.push_back(v);
+                 v.clear();
+                if(q.empty())
+                {
+                   
+                }
+                else
                 {
                     q.push(NULL);
                 }
             }
             else
             {
-                ans.push_back(x->val);
-            }
-            if( x&& x->left)
-            {
-                q.push(x->left);
-            }
-            if(x && x->right)
-            {
-                q.push(x->right);
+                v.push_back(t->val);
+                if(t->left)
+                {
+                    q.push(t->left);
+                }
+                if(t->right)
+                {
+                    q.push(t->right);
+                }
+                
             }
         }
         return matrix;
