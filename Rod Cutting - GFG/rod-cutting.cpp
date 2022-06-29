@@ -10,31 +10,35 @@ using namespace std;
 
 class Solution{
   public:
-    int cuttingrod(int price[],int n,int W,vector<vector<int>> &dp)
-    {
-        if(W<=0)
-        {
-            return 0;
-        }
-        if(n==0)
-        {
-            return 0;
-        }
-        if(dp[n][W]!=-1)
-        {
-            return dp[n][W];
-        }
-        if((W-n)>=0)
-        {
-            return dp[n][W]=max(price[n-1]+cuttingrod(price,n,W-n,dp),cuttingrod(price,n-1,W,dp));
-        }
-        return dp[n][W]=cuttingrod(price,n-1,W,dp);
-    }
+  int solve(int price[],int n,vector<int> &dp)
+  {
+      if(n==0)
+      {
+          return 0;
+      }
+      int mx=-1e9;
+      if(dp[n]!=-1)
+      {
+          return dp[n];
+      }
+      for(int i=0;i<n;i++)
+      {
+          if((n-(i+1))>=0)
+          {
+             mx=max(mx,price[i]+solve(price,n-i-1,dp));
+          }
+      }
+      return dp[n]=mx;
+  }
     int cutRod(int price[], int n) {
         //code here
-        int W=n;
-       vector<vector<int>> dp(n+1,vector<int>(W+1,-1));
-        return cuttingrod(price,n,W,dp);
+        int mx=-1e9;
+        vector<int> dp(n+1,-1);
+        for(int i=0;i<n;i++)
+        {
+            mx=max(mx,price[i]+solve(price,n-i-1,dp));
+        }
+        return mx;
     }
 };
 
