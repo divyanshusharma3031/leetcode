@@ -34,11 +34,23 @@ class Solution{
         //code here
         int mx=-1e9;
         vector<int> dp(n+1,-1);
-        for(int i=0;i<n;i++)
+        for(int i=0;i<=n;i++)
         {
-            mx=max(mx,price[i]+solve(price,n-i-1,dp));
+            dp[i]=0;
         }
-        return mx;
+        for(int i=1;i<=n;i++)
+        {
+            int mx=-1e9;
+            for(int j=0;j<n;j++)
+            {
+                if((i-(j+1))>=0)
+                {
+                    mx=max(mx,price[j]+dp[i-j-1]);
+                }
+            }
+            dp[i]=mx;
+        }
+        return dp[n];
     }
 };
 
