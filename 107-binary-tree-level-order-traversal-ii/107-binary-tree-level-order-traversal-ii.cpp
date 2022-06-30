@@ -9,59 +9,26 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
-    void Rev(vector<vector<int>> &matrix)
-    {
-        int l=0;
-        int h=matrix.size()-1;
-        while(l<=h)
-        {
-            swap(matrix[l],matrix[h]);
-            l++;
-            h--;
-        }
-    }
 class Solution {
 public:
+vector<vector<int> > res;
 
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        vector<vector<int>> matrix;
-        queue<TreeNode *> q;
-        if(!root)
-        {
-            return matrix;
-        }
-        q.push(root);
-        q.push(NULL);
-        vector<int> v;
-        while(!q.empty())
-        {
-            TreeNode *t=q.front();
-            q.pop();
-            if(!t)
-            {
-                matrix.push_back(v);
-                v.clear();
-                if(!q.empty())
-                {
-                    q.push(NULL);
-                }
-            }
-            if(t)
-            {
-                v.push_back(t->val);
-            }
-            if(t && t->left)
-            {
-                q.push(t->left);
-            }
-            if(t && t->right)
-            {
-                q.push(t->right);
-            }
-        }
-        Rev(matrix);
-    return matrix;
+void DFS(TreeNode* root, int level)
+{
+    if (root == NULL) return;
+    if (level == res.size()) // The level does not exist in output
+    {
+        res.push_back(vector<int>()); // Create a new level
     }
     
+     // Add the current value to its level
+    DFS(root->left, level+1); // Go to the next level
+    DFS(root->right,level+1);
+    res[level].push_back(root->val);
+}
+
+vector<vector<int> > levelOrderBottom(TreeNode *root) {
+    DFS(root, 0);
+    return vector<vector<int> > (res.rbegin(), res.rend());
+}
 };
