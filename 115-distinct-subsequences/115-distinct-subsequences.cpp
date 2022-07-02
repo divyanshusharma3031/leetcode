@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> dp;
+    vector<vector<long long>> dp;
     int distinct(int n,int m,string &s,string &t)
     {
         if(n==0 && m==0)
@@ -27,8 +27,35 @@ public:
     }
     int numDistinct(string s, string t) {
 //         express everything in i & j
-         dp.resize(s.length()+1,vector<int>(t.length()+1,-1));
-        return distinct(s.length(),t.length(),s,t);
+        dp.resize(s.length()+1,vector<long long>(t.length()+1,-1));
+        int n=s.length();
+        int m=t.length();
+        for(int i=0;i<=m;i++)
+        {
+            dp[0][i]=0;
+        }
         
+        dp[0][0]=1;
+        
+        for(int i=1;i<=n;i++)
+        {
+            dp[i][0]=1;
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=m;j++)
+            {
+                if(s[i-1]==t[j-1])
+                {
+                    dp[i][j]=(dp[i-1][j-1]+dp[i-1][j])%INT_MAX;
+                }
+                else
+                {
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+        }
+        return dp[n][m];
     }
 };
