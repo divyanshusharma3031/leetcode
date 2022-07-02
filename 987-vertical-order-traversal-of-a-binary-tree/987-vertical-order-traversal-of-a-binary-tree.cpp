@@ -9,66 +9,61 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-bool compare(const pair<int,int> p1,const pair<int,int> p2)
-{
-    if(p1.first==p2.first)
-    {
-        return p1.second<p2.second;
-    }
-    return p1.first<p2.first;
-}
 class Solution {
 public:
-    vector<vector<int>> verticalTraversal(TreeNode* root) {
-        vector<vector<int>> matrix;
-        if(root==NULL)
+    typedef TreeNode Node;
+    static bool compare(pair<int,int> &p1,pair<int,int> &p2)
+    {
+        if(p1.first==p2.first)
         {
-            return matrix;
+            return p1.second<p2.second;
         }
-        // vector<pair<int,int>> arr;
+        return p1.first<p2.first;
+    }
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        
+        vector<vector<int>> ans;
+        if(!root)
+        {
+            return ans;
+        }
+        queue<pair<Node *,pair<int,int>>> q;
+        
+        q.push({root,{0,0}});
+        
         map<int,vector<pair<int,int>>> mpp;
-        queue<pair<TreeNode *,int>> q;
-        q.push({root,0});
-        q.push({NULL,-123});
-        int i=0;
+        
         while(!q.empty())
         {
-            TreeNode* p=q.front().first;
-            int x=q.front().second;
+            Node *t=q.front().first;
+            pair<int,int> p=q.front().second;
             q.pop();
-            if(p)
-            {mpp[x].push_back({i,p->val});}
-            if(!p)
+            mpp[p.second].push_back({p.first,t->val});
+            // cout<<p.second<<" "<<t->val<<"\n";
+            if(t->left)
             {
-                if(!q.empty())
-                {
-                    q.push({NULL,-124});
-                    i++;
-                }
-                continue;
+                q.push({t->left,{p.first+1,p.second-1}});
             }
-            if(p->left)
+            if(t->right)
             {
-                q.push({p->left,x-1});
-            }
-            if(p->right)
-            {
-                q.push({p->right,x+1});
+                q.push({t->right,{p.first+1,p.second+1}});
             }
         }
-        for(auto i=mpp.begin();i!=mpp.end();i++)
+        vector<vector<pair<int,int>>> matrix;
+        for(auto it:mpp)
         {
-            int n=(i->second).size();
-        
-            vector<int> arr;
-            vector<pair<int,int>> x=i->second;
-            sort(x.begin(),x.end(),compare);
-            for(int j=0;j<n;j++)
-            {
-                arr.push_back(x[j].second);
-            }
-            matrix.push_back(arr);
+            sort(it.second.begin(),it.second.end(),compare);
+            matrix.push_back(it.second);
         }
-        return matrix;
+        for(auto it:matrix)
+        {
+            vector<int> v;
+            for(auto i:it)
+            {
+                v.push_back(i.second);
+            }
+            ans.push_back(v);
+        }
+        return ans;
     }
 };
