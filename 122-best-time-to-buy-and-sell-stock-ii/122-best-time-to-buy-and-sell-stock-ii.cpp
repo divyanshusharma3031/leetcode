@@ -1,15 +1,14 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int pro=0;
+        int ssp=0;
+        int ccp=-prices[00];
         int n=prices.size();
-        for(int i=0;i<n-1;i++)
+        for(int i=0;i<n;i++)
         {
-            if(prices[i]<prices[i+1])
-            {
-                pro=pro+(prices[i+1]-prices[i]);
-            }
+            ssp=max(ssp,ccp+prices[i]);
+            ccp=max(ccp,ssp-prices[i]);
         }
-        return pro;
+        return ssp;
     }
 };
