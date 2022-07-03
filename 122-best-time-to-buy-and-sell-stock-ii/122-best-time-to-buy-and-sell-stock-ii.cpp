@@ -1,14 +1,25 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-        int ssp=0;
-        int ccp=-prices[00];
+    vector<vector<int>> dp;
+    int pro(vector<int> &prices,int i,int buy)
+    {
         int n=prices.size();
-        for(int i=0;i<n;i++)
+        if(i==n)
         {
-            ssp=max(ssp,ccp+prices[i]);
-            ccp=max(ccp,ssp-prices[i]);
+            return 0;
         }
-        return ssp;
+        if(dp[i][buy]!=-1)
+        {
+            return dp[i][buy];
+        }
+        if(buy)
+        {
+            return dp[i][buy]=max(-prices[i]+pro(prices,i+1,0),pro(prices,i+1,1));
+        }
+        return dp[i][buy]=max(prices[i]+pro(prices,i+1,1),pro(prices,i+1,0));
+    }
+    int maxProfit(vector<int>& prices) {
+        dp.resize(prices.size()+1,vector<int>(2,-1));
+        return pro(prices,0,1);
     }
 };
