@@ -1,43 +1,28 @@
 class Solution {
 public:
-    int maxProfit(int k, vector<int>& prices) {
+    int maxProfit(int x, vector<int>& prices) {
+       vector<vector<int>> dp(2,vector<int>(x+1,0));
         int n=prices.size();
-        if(n==0)
+        for(int i=n-1;i>=0;i--)
         {
-            return 0;
-        }
-        if(k>=n/2)
-        {
-            int T_i0=0;
-            int T_i1=-prices[0];
-            for(int i=1;i<n;i++)
+            vector<vector<int>> curr(2,vector<int>(x+1,0));
+            for(int j=0;j<2;j++)
             {
-                int temp=T_i0;
-                T_i0=max(T_i0,T_i1+prices[i]);
-                T_i1=max(T_i1,temp-prices[i]);
+                curr[j][0]=0;
+                for(int k=1;k<=x;k++)
+                {
+                    if(j)
+                    {
+                        curr[j][k]=max(-prices[i]+dp[0][k],dp[1][k]);
+                    }
+                    else
+                    {
+                        curr[j][k]=max(prices[i]+dp[1][k-1],dp[0][k]);
+                    }
+                }
             }
-            return T_i0;
+            dp=curr;
         }
-        int T_i0[k+1];
-        for(int i=0;i<=k;i++)
-        {
-            T_i0[i]=0;
-        }
-        int T_i1[k+1];
-        for(int i=0;i<=k;i++)
-        {
-            T_i1[i]=INT_MIN;
-        }
-        T_i0[0]=0;
-        T_i1[0]=-prices[0];
-        for(int i=0;i<n;i++)
-        {
-            for(int j=k;j>0;j--)
-            {
-                T_i0[j]=max(T_i0[j],T_i1[j]+prices[i]);
-                T_i1[j]=max(T_i1[j],T_i0[j-1]-prices[i]);
-            }
-        }
-        return T_i0[k];
+        return dp[1][x]; 
     }
 };
