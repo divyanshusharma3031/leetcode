@@ -1,20 +1,30 @@
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& nums) {
-        //NOW i nlog(n)
-        vector<int> res;
-        for(int i=0;i<nums.size();i++)
+    vector<vector<int>> dp;
+    int lis(vector<int> &nums,int i,int j)
+    {
+        int n=nums.size();
+        if(i==n)
         {
-            auto it=lower_bound(res.begin(),res.end(),nums[i]);
-            if(it==res.end())
-            {
-                res.push_back(nums[i]);
-            }
-            else
-            {
-                *it=nums[i];
-            }
+            return 0;
         }
-        return res.size();
+        if(j==-1)
+        {
+            return max(1+lis(nums,i+1,i),lis(nums,i+1,j));
+        }
+        if(dp[i][j]!=-1)
+        {
+            return dp[i][j];
+        }
+        if(nums[i]>nums[j])
+        {
+            return dp[i][j]=max(1+lis(nums,i+1,i),lis(nums,i+1,j));
+        }
+        return dp[i][j]=(lis(nums,i+1,j));
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        dp.resize(n+1,vector<int>(n+1,-1));
+        return lis(nums,0,-1);
     }
 };
