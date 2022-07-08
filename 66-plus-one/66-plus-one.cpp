@@ -11,6 +11,10 @@ public:
         {
             digits[i]=digits[i]+c;
             c=digits[i]/10;
+            if(c==0)
+            {
+                break;
+            }
             digits[i]=digits[i]%10;
             i++;
         }
