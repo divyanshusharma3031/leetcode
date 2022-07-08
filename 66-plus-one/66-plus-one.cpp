@@ -9,12 +9,13 @@ public:
         int i=1;
         while(i<n)
         {
-            digits[i]=digits[i]+c;
-            c=digits[i]/10;
-            if(c==0)
+             if(c==0)
             {
                 break;
             }
+            digits[i]=digits[i]+c;
+            c=digits[i]/10;
+           
             digits[i]=digits[i]%10;
             i++;
         }
