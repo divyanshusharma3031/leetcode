@@ -15,6 +15,11 @@ public:
             {
                 continue;
             }
+            int j = i;
+            while (--j >= 0) // third
+                if (v[i] == v[j]) 
+                    break;
+            if (j != -1) continue;
             v[i]+=arr[idx];
             if(possible(v,arr,idx+1))
             {
