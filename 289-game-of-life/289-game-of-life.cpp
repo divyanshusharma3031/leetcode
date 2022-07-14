@@ -27,8 +27,7 @@ public:
                 int a=0;
                 if(r1>=0 && c1>=0 && r1<n && c1<m)
                 {
-                    // cout<<r1<<" "<<c1<<"\n";
-                    if(matrix[r1][c1]==1)
+                    if(matrix[r1][c1]==1 || matrix[r1][c1]==2)
                     {
                         a++;
                     }
@@ -39,8 +38,7 @@ public:
                 }
                 if(r2>=0 && c2>=0 && c2<m && r2<n)
                 {
-                    // cout<<r2<<" "<<c2<<"\n";
-                    if(matrix[r2][c2]==1)
+                    if(matrix[r2][c2]==1 || matrix[r2][c2]==2)
                     {
                         a++;
                     }
@@ -51,8 +49,7 @@ public:
                 }
                 if(r3>=0 && c3>=0 && r3<n && c3<m)
                 {
-                    // cout<<r3<<" "<<c3<<"\n";
-                    if(matrix[r3][c3]==1)
+                    if(matrix[r3][c3]==1 || matrix[r3][c3]==2)
                     {
                         a++;
                     }
@@ -63,8 +60,7 @@ public:
                 }
                 if(r4>=0 && c4>=0 && r4<n && c4<m)
                 {
-                    // cout<<r4<<" "<<c4<<"\n";
-                    if(matrix[r4][c4]==1)
+                    if(matrix[r4][c4]==1 || matrix[r4][c4]==2)
                     {
                         a++;
                     }
@@ -76,7 +72,7 @@ public:
                 if(r5>=0 && c5>=0 && r5<n && c5<m)
                 {
                     // cout<<r5<<" "<<c5<<"\n";
-                    if(matrix[r5][c5]==1)
+                    if(matrix[r5][c5]==1 || matrix[r5][c5]==2)
                     {
                         a++;
                     }
@@ -87,8 +83,7 @@ public:
                 }
                 if(r6>=0 && c6>=0 && r6<n && c6<m)
                 {
-                    // cout<<r6<<" "<<c6<<"\n";
-                    if(matrix[r6][c6]==1)
+                    if(matrix[r6][c6]==1 || matrix[r6][c6]==2)
                     {
                         a++;
                     }
@@ -99,8 +94,7 @@ public:
                 }
                 if(r7>=0 && c7>=0 && r7<n && c7<m)
                 {
-                    // cout<<r7<<" "<<c7<<"\n";
-                    if(matrix[r7][c7]==1)
+                    if(matrix[r7][c7]==1 || matrix[r7][c7]==2)
                     {
                         a++;
                     }
@@ -112,7 +106,7 @@ public:
                 if(r8>=0 && c8>=0 && r8<n && c8<m)
                 {
                     // cout<<r8<<" "<<c8<<"\n";
-                    if(matrix[r8][c8]==1)
+                    if(matrix[r8][c8]==1 || matrix[r8][c8]==2)
                     {
                         a++;
                     }
@@ -125,18 +119,24 @@ public:
                 {
                     if(a<2 || a>3)
                     {
-                        v[i][j]=0;
+                        matrix[i][j]=2;//newly dead.
                     }
                 }
                 else
                 {
                     if(a==3)
                     {
-                        v[i][j]=1;
+                        matrix[i][j]=3;//newly alive;
                     }
                 }
             }
         }
-        matrix=v;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                matrix[i][j]=matrix[i][j]%2;
+            }
+        }
     }
 };
