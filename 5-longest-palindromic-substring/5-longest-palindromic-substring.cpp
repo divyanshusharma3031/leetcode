@@ -3,10 +3,12 @@ public:
     string longestPalindrome(string s) {
         int n=s.size();
         vector<vector<bool>> dp(n+1,vector<bool>(n+1,false));
-        string ans="";
+        for(int i=0;i<n;i++)
+        {
+            dp[i][i]=true;
+        }
+        string ans;
         ans+=s[0];
-         for (int i = 0; i < n; i++)
-            dp[i][i] = true;
         for(int i=n-1;i>=0;i--)
         {
             for(int j=i+1;j<n;j++)
