@@ -1,8 +1,12 @@
 class Solution {
 public:
+    map<int,int> mpp;
     int Sieve(int n)
     {
-
+        if(mpp[n]!=0)
+        {
+            return mpp[n];
+        }
         bool prime[n + 1];
         memset(prime, true, sizeof(prime));
 
@@ -17,6 +21,7 @@ public:
     for (int p = 2; p < n; p++)
         if (prime[p])
             c++;
+    mpp[n]=c;
     return c;
     }
     int countPrimes(int n) {
