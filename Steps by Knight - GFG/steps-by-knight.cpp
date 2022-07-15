@@ -3,12 +3,14 @@
 using namespace std;
 
  // } Driver Code Ends
-class Solution 
+
+class Solution
 {
     public:
     //Function to find out minimum steps Knight needs to reach target position.
-    struct cell
+    class cell
     {
+        public:
         int x;
         int y;
         int d;
