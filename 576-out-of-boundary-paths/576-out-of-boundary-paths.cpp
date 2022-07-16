@@ -1,25 +1,26 @@
 class Solution {
 public:
-    const int mod=1e9+7;
-    long long dfs(int i,int j,vector<vector<vector<int>>> &vis,int moves,int m,int n)
-    {
-        if(i<0 || j<0 || i>=m || j>=n )
-        {
-            return 1;
+    int dir[5]={0,1,0,-1,0};
+    int mod = 1e9+7;
+    int dp[51][51][51];
+    int dfs(int i, int j, int m, int n, int maxMove, vector<vector<bool>> &visited){
+        if((i<0 || i>=m || j<0 || j>=n) && maxMove>=0) return 1;
+        //if(visited[i][j]) return 0;
+        if(maxMove<=0) return 0;
+        //visited[i][j]=true;
+        if(dp[i][j][maxMove]!=-1) return dp[i][j][maxMove];
+        long long p=0;
+        for(int kj=0;kj<4;kj++){
+            int x = i + dir[kj];
+            int y = j + dir[kj+1];
+            p+=dfs(x,y,m,n,maxMove-1,visited)%mod;
         }
-        if(moves==0)
-        {
-            return 0;
-        }
-        if(vis[i][j][moves]!=-1)
-        {
-            return vis[i][j][moves];
-        }
-        long long ans=(dfs(i+1,j,vis,moves-1,m,n)+dfs(i-1,j,vis,moves-1,m,n)+dfs(i,j+1,vis,moves-1,m,n)+dfs(i,j-1,vis,moves-1,m,n))%mod;
-        return vis[i][j][moves]=ans;
+        return dp[i][j][maxMove] = p%mod;
+        
     }
     int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
-        vector<vector<vector<int>>> vis(m+1,vector<vector<int>>(n+1,vector<int>(maxMove+1,-1)));
-        return dfs(startRow,startColumn,vis,maxMove,m,n);
+        vector<vector<bool>> visited(m,vector<bool>(n,false));
+         memset(dp,-1,sizeof(dp));
+        return dfs(startRow, startColumn, m,n,maxMove,visited);
     }
 };
