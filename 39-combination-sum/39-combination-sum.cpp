@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void combo(vector<vector<int>> &ans,vector<int>& arr, int target,vector<int> v,int n)
+    void combo(vector<vector<int>> &ans,vector<int>& arr, int target,vector<int> &v,int n)
     {
         if(target<0)
         {
