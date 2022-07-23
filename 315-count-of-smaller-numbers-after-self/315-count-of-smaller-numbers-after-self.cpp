@@ -5,9 +5,8 @@ typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics
 
 class Solution {
 public:
-    vector<int> countSmaller(vector<int>& nums) {
-        int n=nums.size();
-        vector<int> arr=nums;
+    vector<int> countSmaller(vector<int>& arr) {
+        int n=arr.size();
         vector<int> ans;
         ans.push_back(0);
         ordered_set set1;
