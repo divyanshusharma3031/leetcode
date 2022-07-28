@@ -13,13 +13,6 @@ public:
             arr1[s[i]-'a']++;
             arr2[t[i]-'a']++;
         }
-        for(int i=0;i<26;i++)
-        {
-            if(arr1[i]!=arr2[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        return arr1==arr2;//overloaded == operator
     }
 };
