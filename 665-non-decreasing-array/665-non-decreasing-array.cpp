@@ -28,7 +28,7 @@ public:
         {
             return true;
         }
-        if( (nums[idx-1]<nums[idx+1]) || (nums[idx]<nums[idx+2]) || (nums[idx-1]==nums[idx+1]))
+        if( (nums[idx-1]<=nums[idx+1]) || (nums[idx]<nums[idx+2]))
         {
             return true;
         }
