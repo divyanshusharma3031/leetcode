@@ -54,7 +54,6 @@ public:
                 temp+=ans[i][j];
                 temp+=".";
             }
-            if(!temp.empty())
                 temp.pop_back();
             v.push_back(temp);
         }
