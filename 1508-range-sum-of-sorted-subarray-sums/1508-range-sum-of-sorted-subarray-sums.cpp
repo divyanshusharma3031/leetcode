@@ -1,25 +1,28 @@
 class Solution {
 public:
+    typedef pair<int,int> pii;
     const int mod=1e9+7;
     int rangeSum(vector<int>& nums, int n, int left, int right) {
-        vector<int> arr;
-        // int n=nums.size();
+        priority_queue<pii,vector<pii>,greater<pii>> pq;
         for(int i=0;i<n;i++)
         {
-            int s=0;
-            for(int j=i;j<n;j++)
+            pq.push({nums[i],i+1});
+        }
+        int ans=0;
+        for(int i=1;i<=right;i++)
+        {
+            pii t=pq.top();
+            pq.pop();
+            if(i>=left)
             {
-                s=(s+nums[j])%mod;
-                arr.push_back(s);
+                ans=(ans+t.first)%mod;
+            }
+            if(t.second<n)
+            {
+                t.first+=nums[t.second++];
+                pq.push(t);
             }
         }
-        sort(arr.begin(),arr.end());
-        int x=left-1;
-        int s=0;
-        for(int i=x;i<right;i++)
-        {
-            s=(s+arr[i])%mod;
-        }
-        return s;
+        return ans;
     }
 };
