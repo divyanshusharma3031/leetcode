@@ -2,34 +2,28 @@ class Solution {
 public:
     bool canBeIncreasing(vector<int>& nums) {
         int n=nums.size();
-        vector<vector<int>> matrix;
-        for(int i=0;i<n;i++)
+        vector<int> pos;
+        for(int i=0;i<n-1;i++)
         {
-            bool b1=true;
-            vector<int> v;
-            for(int j=0;j<n;j++)
+            if(nums[i]>=nums[i+1])
             {
-                if(i==j)
-                {
-                    continue;
-                }
-                else
-                {
-                    v.push_back(nums[j]);
-                }
-            }
-            for(int j=0;j<v.size()-1;j++)
-            {
-                if(v[j]>=v[j+1])
-                {
-                    b1=false;
-                }
-            }
-            if(b1)
-            {
-                return true;
+                pos.push_back(i);
             }
         }
-        return false;
+        if(pos.size()==0)
+        {
+            return true;
+        }
+        if(pos.size()>1)
+        {
+            return false;
+        }
+        int p=pos[0];
+        if(p==0 || p>=n-2)
+        {
+            return true;
+        }
+        return (nums[p-1]<nums[p+1]) || ( nums[p]<nums[p+2]);
     }
 };
+// [105,924,32,968]
