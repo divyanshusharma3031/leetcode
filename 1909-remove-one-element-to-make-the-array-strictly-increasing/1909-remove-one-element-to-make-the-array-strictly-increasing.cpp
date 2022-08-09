@@ -18,14 +18,9 @@ public:
                     v.push_back(nums[j]);
                 }
             }
-            matrix.push_back(v);
-        }
-        for(int i=0;i<matrix.size();i++)
-        {
-            bool b1=true;
-            for(int j=0;j<matrix[i].size()-1;j++)
+            for(int j=0;j<v.size()-1;j++)
             {
-                if(matrix[i][j]>=matrix[i][j+1])
+                if(v[j]>=v[j+1])
                 {
                     b1=false;
                 }
