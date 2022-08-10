@@ -1,6 +1,6 @@
 class Solution {
 public:
-    string reversePara(int i,string s,int &np)
+    string reversePara(int i,string &s,int &np)
     {
         int n=s.length();
         string ans="";
@@ -27,7 +27,6 @@ public:
         return ans;
     }
     string reverseParentheses(string s) {
-        stack<char> st;
         int i=0;
         int n=s.length();
         int np=0;
