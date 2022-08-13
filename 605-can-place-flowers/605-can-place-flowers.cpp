@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& arr, int n) {
-        map<int,int> planted;
-        map<int,int> space;
+        unordered_map<int,int> planted;
+        unordered_map<int,int> space;
         int N=arr.size();
         for(int i=0;i<N;i++)
         {
