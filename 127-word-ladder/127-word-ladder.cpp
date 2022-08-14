@@ -30,11 +30,11 @@ public:
             {
                 if(worddif(s,wordList[i]) && vis[wordList[i]]==0)
                 {
-                    // cout<<wordList[i]<<"\n";
                     q.push({wordList[i],l+1});
                     if(wordList[i]==endWord)
                     {
                         ans=min(ans,l+1);
+                        break;
                     }
                     vis[wordList[i]]++;
                 }
