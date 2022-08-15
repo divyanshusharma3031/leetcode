@@ -10,23 +10,6 @@ public:
         {
             int f=nums[i]-k;
             int f2=nums[i]+k;
-            if(f==f2)
-            {
-                if(mpp[f2])
-                {
-                    if(vis[{f,nums[i]}] || vis[{nums[i],f}])
-                    {
-
-                    }
-                    else
-                    {
-                        ans++;
-                    }
-                    vis[{f,nums[i]}]++;
-                    vis[{nums[i],f}]++;
-                }
-                // continue;
-            }
             if(mpp[f])
             {
                 if(vis[{f,nums[i]}] || vis[{nums[i],f}])
