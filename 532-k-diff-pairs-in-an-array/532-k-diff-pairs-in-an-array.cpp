@@ -25,8 +25,9 @@ public:
                     vis[{f,nums[i]}]++;
                     vis[{nums[i],f}]++;
                 }
+                // continue;
             }
-            else if(mpp[f])
+            if(mpp[f])
             {
                 if(vis[{f,nums[i]}] || vis[{nums[i],f}])
                 {
@@ -34,7 +35,6 @@ public:
                 }
                 else
                 {
-                    // cout<<f<<" "<<nums[i]<<"\n";
                     ans++;
                 }
                 vis[{f,nums[i]}]++;
@@ -48,13 +48,11 @@ public:
                 }
                 else
                 {
-                    // cout<<f2<<" "<<nums[i]<<"\n";
                     ans++;
                 }
                 vis[{f2,nums[i]}]++;
                 vis[{nums[i],f2}]++;
             }
-            // cout<<f<<" "<<f2<<" "<<ans<<"\n";
             mpp[nums[i]]++;
         }
         return ans;
