@@ -22,12 +22,10 @@ public:
             ll f2=z-arr[i];
             if(mpp[f])
             {
-                // cout<<f<<" "<<arr[i]<<" "<<mpp[f]<<"\n";
                 ans=(ans+mpp[f])%mod;
             }
             if(mpp[f2] && f!=f2)
             {
-                // cout<<f2<<" "<<arr[i]<<" "<<mpp[f2]<<"\n";
                 ans=(ans+mpp[f2])%mod;
             }
             mpp[arr[i]]++;
