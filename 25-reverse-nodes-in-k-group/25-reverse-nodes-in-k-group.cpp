@@ -11,27 +11,27 @@
 class Solution {
 public:
     typedef ListNode Node;
-    ListNode *swapPairs(ListNode* head,int k)
+    ListNode * reverse(ListNode* head, int k)
     {
-        ListNode *p=head;
-        if(!p)
+        if(!head)
         {
             return NULL;
         }
+        Node *p=head;
         int rem=0;
-        Node *temp=p;
-        while(temp)
+        while(p)
         {
+            p=p->next;
             rem++;
-            temp=temp->next;
         }
         if(rem<k)
         {
-            return p;
+            return head;
         }
-        int c=k;
+        p=head;
         Node *q=NULL;
         Node *r=NULL;
+        int c=k;
         while(p && c)
         {
             r=q;
@@ -40,10 +40,10 @@ public:
             q->next=r;
             c--;
         }
-        head->next=swapPairs(p,k);
+        head->next=reverse(p,k);
         return q;
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
-        return swapPairs(head,k);
+        return reverse(head,k);
     }
 };
