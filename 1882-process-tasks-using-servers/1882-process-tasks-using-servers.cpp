@@ -1,23 +1,11 @@
 typedef pair<int,int> pi;
-typedef pair<int,pi> pip;
-struct compare
-{
-    bool operator()(const pi & lhs, const pi & rhs)
-    {
-        if(lhs.first==rhs.first)
-        {
-            return lhs.second>rhs.second;
-        }
-        return lhs.first > rhs.first;
-    }
-};
 class Solution {
 public:
     
     vector<int> assignTasks(vector<int>& servers, vector<int>& tasks) {
         int n=servers.size();
         int m=tasks.size();
-        priority_queue<pi,vector<pi>,compare> pq;
+        priority_queue<pi,vector<pi>,greater<pi>> pq;
         for(int i=0;i<n;i++)
         {
             pq.push({servers[i],i});
@@ -28,7 +16,7 @@ public:
         int o=0;
         for(int i=0;i<m;i++)
         {
-            t=max(i,t);
+            t=max(i,t);//handling caseof multitasking
             if(pq.empty() && q.top()[0]>t)
             {
                 t=q.top()[0];
@@ -41,8 +29,6 @@ public:
                 ans.push_back(pq.top().second);
                 q.push({t+tasks[i],pq.top().first,pq.top().second,o});
                 pq.pop();
-                // i++;
-                // t++;
             
             o++;
         }
