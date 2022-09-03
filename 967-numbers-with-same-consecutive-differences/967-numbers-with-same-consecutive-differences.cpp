@@ -3,7 +3,6 @@ public:
     vector<int> ans;
     void consdiff(int num,int curr,int n,int k)
     {
-        // cout<<num<<"\n";
         if(n==0)
         {
             ans.push_back(num);
