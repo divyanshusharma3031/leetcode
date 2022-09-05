@@ -35,7 +35,23 @@ public:
     }
     vector<int> preorder(Node* root) {
         vector<int> ans;
-        preorder(root,ans);
+        if(!root)
+        {
+            return ans;
+        }
+        stack<Node *> s;
+        s.push(root);
+        while(!s.empty())
+        {
+            Node *x=s.top();
+            s.pop();
+            ans.push_back(x->val);
+            for(int i=(x->children).size()-1;i>=0;i--)
+            {
+                if(x->children[i]!=NULL)
+                    s.push(x->children[i]);
+            }
+        }
         return ans;
     }
 };
