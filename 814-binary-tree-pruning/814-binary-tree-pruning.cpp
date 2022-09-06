@@ -42,8 +42,8 @@ public:
         return false;
     }
     TreeNode* pruneTree(TreeNode* root) {
-        prune(root);
-        if(root && root->left==NULL && root->right==NULL && root->val==0)
+        bool b=prune(root);
+        if(b)
         {
             return NULL;
         }
