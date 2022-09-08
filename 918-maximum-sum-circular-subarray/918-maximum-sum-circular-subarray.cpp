@@ -23,44 +23,6 @@ public:
         }
         return mx;
     }
-    int maximumsumIncludingFirstandLast(vector<int> &arr)
-    {
-        
-        int n=arr.size();
-        int s=0;
-        int mx=s;
-        int liability=arr[0]+arr[n-1];
-        vector<int> v;
-        for(int i=1;i<n-1;i++)
-        {
-            s=s+arr[i];
-            if(s<0)
-            {
-                return mx+liability;
-            }
-            mx=max(mx,s);
-        }
-        return mx+liability;
-    }
-    int maximumsumIncludingFirstandLast2(vector<int> &arr)
-    {
-        reverse(arr.begin(),arr.end());
-        int n=arr.size();
-        int s=0;
-        int mx=s;
-        int liability=arr[0]+arr[n-1];
-        vector<int> v;
-        for(int i=1;i<n-1;i++)
-        {
-            s=s+arr[i];
-            if(s<0)
-            {
-                return mx+liability;
-            }
-            mx=max(mx,s);
-        }
-        return mx+liability;
-    }
     int maxSubarraySumCircular(vector<int>& arr) {
         int n=arr.size();
         if(n==1)
