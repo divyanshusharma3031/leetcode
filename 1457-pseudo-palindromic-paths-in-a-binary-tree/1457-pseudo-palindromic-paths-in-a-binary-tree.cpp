@@ -11,45 +11,57 @@
  */
 class Solution {
 public:
-    typedef TreeNode Node;
-    int solve(TreeNode *root,unordered_map<int,int> &mpp)
+    int helper(TreeNode* root, int *arr,int odd)
     {
-        if(!root)
+        if(root==NULL)
         {
             return 0;
         }
+        arr[root->val]++;
+        if(arr[root->val]%2)
+        {
+            odd++;
+        }
+        else
+        {
+            odd--;
+        }
         if(root->left==NULL && root->right==NULL)
         {
-            mpp[root->val]++;
-            int odd=0;
-            for(auto it:mpp)
+            int ans=0;
+            if(odd<2)
             {
-                if(it.second%2)
-                {
-                    odd++;
-                    if(odd>1)
-                    {
-                        mpp[root->val]--;
-                        return 0;
-                    }
-                }
+                ans=1;
             }
-            mpp[root->val]--;
-            return 1;
+            if(arr[root->val]%2==0)
+            {
+                odd--;
+            }
+            else
+            {
+                odd++;
+            }
+            arr[root->val]--;
+            return ans;
         }
-        
-        mpp[root->val]++;
-        int c1=solve(root->left,mpp);
-        int c2=solve(root->right,mpp);
-        mpp[root->val]--;
-        if(mpp[root->val]==0)
+        int ans=helper(root->left,arr,odd)+helper(root->right,arr,odd);
+        if(arr[root->val]%2==0)
         {
-            mpp.erase(root->val);
+            odd--;
         }
-        return c1+c2;
+        else
+        {
+            odd++;
+        }
+        arr[root->val]--;
+        return ans;
     }
-    int pseudoPalindromicPaths (TreeNode* root) {
-        unordered_map<int,int> mpp;
-        return solve(root,mpp);
+    
+    int pseudoPalindromicPaths (TreeNode* root) 
+    {
+        int arr[10] ={0};
+        int odd=0;
+        int res=0;
+        return helper(root,arr,odd);
     }
 };
