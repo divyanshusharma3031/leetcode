@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {
         int evensum=0;
-        map<int,int> mpp;
         int n=nums.size();
         for(int i=0;i<n;i++)
         {
@@ -12,7 +11,6 @@ public:
             }
             else
             {
-                mpp.insert({i,nums[i]});
                 evensum+=nums[i];
             }
         }
@@ -30,7 +28,6 @@ public:
                 else
                 {
                     evensum+=nums[idx];
-                    mpp[idx]=nums[idx];
                 }
             }
             else
