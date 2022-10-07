@@ -1,13 +1,11 @@
 class TimeMap {
 public:
-    map<int,string> mpp;
     unordered_map<string,map<int,string>> mpp2;
     TimeMap() {
         
     }
     
     void set(string key, string value, int timestamp) {
-        mpp[timestamp]=key;
         mpp2[key].insert({timestamp,value});
     }
     
