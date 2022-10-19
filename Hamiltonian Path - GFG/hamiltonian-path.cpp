@@ -9,11 +9,13 @@ class Solution
     public:
     void check(int v,vector<int> adj[],unordered_set<int> &s,int N)
     {
+        if(b)
+        {
+            return;
+        }
         s.insert(v);
-        // cout<<s.size()<<" ";
         if(s.size()==N)
         {
-            // cout<<s.size()<<" ";
             b=true;
         }
         for(auto it:adj[v])
