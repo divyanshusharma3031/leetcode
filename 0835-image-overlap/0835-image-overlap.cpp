@@ -3,7 +3,7 @@ public:
     typedef vector<int> pi;
     int largestOverlap(vector<vector<int>>& img1, vector<vector<int>>& img2) {
         int n=img1.size();
-        map<string,int> mpp;
+        unordered_map<string,int> mpp;
         map<pi,int> mpp1;
         map<pi,int> mpp2;
         for(int i=0;i<n;i++)
