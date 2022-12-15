@@ -18,23 +18,22 @@ public:
         {
             return 0;
         }
-        if(!(root->left) && !(root->right))
+        if(root->left==NULL && root->right==NULL)
         {
             mx=max(mx,root->val);
             return root->val;
         }
         int left=maxsum(root->left);
+        int right=maxsum(root->right);
         if(left<0)
         {
             left=0;
         }
-        int right=maxsum(root->right);
         if(right<0)
         {
             right=0;
         }
-        // cout<<root->val<<" "<<left<<" "<<right<<"\n";
-        mx=max(mx,root->val + left + right);
+        mx=max(mx,root->val+left+right);
         return root->val+max(left,right);
     }
     int maxPathSum(TreeNode* root) {
@@ -42,7 +41,7 @@ public:
         {
             return 0;
         }
-        if(!(root->left) && !(root->right))
+        if(root->left==NULL && root->right==NULL)
         {
             return root->val;
         }
