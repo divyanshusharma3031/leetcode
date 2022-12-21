@@ -1,49 +1,38 @@
 class Solution {
 public:
     bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
+        // check bipartite
         vector<int> adj[n+1];
         for(int i=0;i<dislikes.size();i++)
         {
             adj[dislikes[i][0]].push_back(dislikes[i][1]);
             adj[dislikes[i][1]].push_back(dislikes[i][0]);
         }
+        int m=dislikes.size();
+        
         vector<int> color(n+1,-1);
-        vector<int> vis(n+1,0);
-        int c=0;
+       
         for(int i=1;i<=n;i++)
         {
-            if(!vis[i])
+            if(color[i]==-1)
             {
                 queue<int> q;
                 q.push(i);
-                vis[i]=1;
-                color[i]=c;
+                color[i]=1;
                 while(!q.empty())
                 {
-                    int x=q.front();
+                    int t=q.front();
                     q.pop();
-                    for(auto it:adj[x])
+                    for(auto it:adj[t])
                     {
-                        if(vis[it]==0)
+                        if(color[it]==-1)
                         {
-                            vis[it]=1;
+                            color[it]=1-color[t];
                             q.push(it);
-                            if(color[x]==1)
-                            {
-                                color[it]=0;
-                            }
-                            else
-                            {
-                                color[it]=1;
-                            }
                         }
-                        else
+                        else if(color[it]==color[t])
                         {
-                            if(color[it]==color[x])
-                            {
-                                // cout<<it<<" "<<x<<"\n";
-                                return false;
-                            }
+                            return false;
                         }
                     }
                 }
@@ -52,3 +41,7 @@ public:
         return true;
     }
 };
+// 32
+// 1->2
+// 1->3
+// 2->4
