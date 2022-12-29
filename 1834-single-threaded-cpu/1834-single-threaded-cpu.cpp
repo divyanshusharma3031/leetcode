@@ -12,14 +12,6 @@ public:
             return p1.first>p2.first;
         }
     };
-    static bool comp(vector<int> &v1,vector<int> &v2)
-    {
-        if(v1[0]==v2[0])
-        {
-            return v1[1]<v2[1];
-        }
-        return v1[0]<v2[0];
-    }
     vector<int> getOrder(vector<vector<int>>& tasks) {
         priority_queue<pii,vector<pii>,compare> pq;
         vector<int> ans;
@@ -30,7 +22,6 @@ public:
         }
         sort(tasks.begin(),tasks.end());
         int c=0;
-        // ans.push_back(0);
         for(int i=0;i<n;)
         {
             
@@ -58,11 +49,9 @@ public:
                 }
             }
         }
-        // cout<<pq.size()<<" ";
         while(!pq.empty())
         {
             pii p=pq.top();
-            cout<<p.first<<" "<<p.first<<" ";
             ans.push_back(p.second);
             pq.pop();
         }
