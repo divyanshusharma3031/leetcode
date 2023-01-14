@@ -11,28 +11,21 @@ class Solution{
 public:
     void segregate0and1(int arr[], int n) {
         // code here
-        int o=0;
-        int z=0;
-        for(int i=0;i<n;i++)
-        {
-            if(arr[i]==0)
-            {
-                z++;
-            }
-            else
-            {
-                o++;
-            }
-        }
-        for(int i=0;i<z;i++)
-        {
-            arr[i]=0;
-        }
-        for(int i=z;i<o+z;i++)
-        {
-            arr[i]=1;
-        }
-        return;
+       int p=0;
+       for(int i=0;i<n;i++)
+       {
+           if(arr[i]==0)
+           {
+               arr[p]=0;
+               p++;
+           }
+       }
+       while(p<n)
+       {
+           arr[p]=1;
+           p++;
+       }
+       return;
     }
 };
 
