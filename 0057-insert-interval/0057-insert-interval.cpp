@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         vector<vector<int>> v;
-        sort(intervals.begin(),intervals.end());
         int x=newInterval[0];
         int y=newInterval[1];
         int n=intervals.size();
