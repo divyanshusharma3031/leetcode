@@ -51,10 +51,6 @@ class Solution
         Node *fast=head;
         do
         {
-            if(!fast || !slow)
-            {
-                return -1;
-            }
             slow=slow->next;
             fast=fast->next;
             if(!fast)
