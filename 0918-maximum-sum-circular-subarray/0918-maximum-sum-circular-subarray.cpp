@@ -1,17 +1,13 @@
 class Solution {
 public:
     typedef long long ll;
-    int maxSubArray(vector<int> &arr,int lo,int hi)
+    int maxSubArray(vector<int> &arr)
     {
-        if(lo>hi)
-        {
-            return 0;
-        }
         ll ans = INT_MIN;
         ll temp = 0;
-        for (int i=lo;i<=hi;i++)
+        for (auto i : arr)
         {
-            temp = temp + arr[i];
+            temp = temp + i;
             if (ans < temp)
             {
                 ans = temp;
@@ -28,7 +24,7 @@ public:
         int n=arr.size();
         int ans=INT_MIN;
         vector<int> suff(n+1,0);
-        ans=maxSubArray(arr,0,n-1);
+        ans=maxSubArray(arr);
         suff[n-1]=arr[n-1];
         for(int i=n-2;i>=0;i--)
         {
