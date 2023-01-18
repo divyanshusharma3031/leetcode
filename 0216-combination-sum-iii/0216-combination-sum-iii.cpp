@@ -1,57 +1,21 @@
 class Solution {
 public:
-    vector<vector<int>> matrix;
-    void solve(int k,int n,vector<int> &ans,map<int,int> &used)
-    {
-        if(n<0)
-        {
-            return;
-        }
-        if(k==0)
-        {
-            if(n==0)
-            {
-                matrix.push_back(ans);
-            }
-            return;
-        }
-        for(int i=1;i<=9;i++)
-        {
-            if(!used[i])
-            {
-                used[i]=1;
-                ans.push_back(i);
-                solve(k-1,n-i,ans,used);
-                ans.pop_back(); 
-                used[i]=0;
-            }
-        }
+  void combination(vector<vector<int>>& result, vector<int> sol, int k, int n) {
+    if (sol.size() == k && n == 0) { result.push_back(sol); return ; }
+    if (sol.size() < k) {
+      for (int i = sol.empty() ? 1 : sol.back() + 1; i <= 9; ++i) {
+        if (n - i < 0) break;
+        sol.push_back(i);
+        combination(result, sol, k, n - i);
+        sol.pop_back();
+      }
     }
-    vector<vector<int>> combinationSum3(int k, int n) {
-        vector<int> ans;
-        map<int,int> used;
-        for(int i=1;i<=9;i++)
-        {
-            ans.push_back(i);
-            used[i]=1;
-            solve(k-1,n-i,ans,used);
-            ans.pop_back();
-            used[i]=0;
-        }
-        for(int i=0;i<matrix.size();i++)
-        {
-            sort(matrix[i].begin(),matrix[i].end());
-        }
-        set<vector<int>> s;
-        for(auto it:matrix)
-        {
-            s.insert(it);
-        }
-        vector<vector<int>> v;
-        for(auto it:s)
-        {
-            v.push_back(it);
-        }
-        return v;
-    }
+  }
+
+  vector<vector<int>> combinationSum3(int k, int n) {
+    vector<vector<int>> result;
+    vector<int> sol;
+    combination(result, sol, k, n);
+    return result;
+  }
 };
