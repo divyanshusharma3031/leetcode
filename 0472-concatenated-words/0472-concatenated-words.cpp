@@ -1,7 +1,7 @@
 class Solution {
 public:
-    map<string,int> mpp;
-    map<string,int> dp;
+    unordered_map<string,int> mpp;
+    unordered_map<string,int> dp;
     bool solve(int i,string prev,string &w)
     {
         int n=w.size();
