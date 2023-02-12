@@ -15,10 +15,7 @@ public:
             c=c+dfs(it,adj,vis);
         }
         int d=ceil(c/(s/(1.0)));
-        if(node!=0)
-        {
-            ans=ans+d;
-        }
+        ans=ans+d;
         return c;
     }
     long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
@@ -31,7 +28,8 @@ public:
             adj[it[0]].push_back(it[1]);
             adj[it[1]].push_back(it[0]);
         }
-        dfs(0,adj,vis);
-        return ans;
+        int c=dfs(0,adj,vis);
+        int d=ceil(c/(s/(1.0)));
+        return ans-d;
     }
 };
