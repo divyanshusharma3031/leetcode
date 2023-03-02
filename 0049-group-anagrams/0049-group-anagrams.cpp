@@ -17,8 +17,6 @@ public:
         {
             temp[strs[i][j]-'a']++;
         }
-        for(int j=0;j<26;j++){cout<<temp[j]<<" ";}
-        cout<<endl;
         mp[temp].push_back(strs[i]);
     }    
     while(mp.size())  
