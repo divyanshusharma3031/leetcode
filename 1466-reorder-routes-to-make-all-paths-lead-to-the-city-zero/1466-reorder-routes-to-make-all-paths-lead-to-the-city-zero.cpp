@@ -1,7 +1,7 @@
 class Solution {
 public:
-    map<int,set<int>> out;
-    map<int,set<int>> in;
+    unordered_map<int,set<int>> out;
+    unordered_map<int,set<int>> in;
     int ans=0;
     void dfs(int node)
     {
