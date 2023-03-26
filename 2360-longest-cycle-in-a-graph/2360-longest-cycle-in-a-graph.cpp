@@ -1,7 +1,7 @@
 class Solution {
 public:
     int ans=-1;
-    void dfs(int node,vector<int> adj[],vector<int> &vis,map<int,int> &mpp,int c)
+    void dfs(int node,vector<int> adj[],vector<int> &vis,unordered_map<int,int> &mpp,int c)
     {
         vis[node]=1;
         mpp[node]=c;
@@ -31,7 +31,7 @@ public:
         }
         for(int i=0;i<n;i++)
         {
-            map<int,int> mpp;
+            unordered_map<int,int> mpp;
             int c=1;
             dfs(i,adj,vis,mpp,c);
         }
