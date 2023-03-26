@@ -5,7 +5,6 @@ public:
     {
         vis[node]=1;
         mpp[node]=c;
-        // cout<<node<<" "<<c<<"\n";
         for(auto it:adj[node])
         {
             if(!vis[it])
@@ -14,7 +13,6 @@ public:
             }
             else if(mpp[it])
             {
-                // cout<<it<<" "<<mpp[it]<<" "<<c<<"\n";
                 ans=max(ans,c-mpp[it]+1);
             }
         }
