@@ -52,6 +52,7 @@ public:
             {
                 ans[0]=it[0];
                 ans[1]=it[1];
+                break;
             }
         }
         return ans;
