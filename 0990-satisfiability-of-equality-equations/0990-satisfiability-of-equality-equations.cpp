@@ -1,34 +1,33 @@
 class Solution {
 public:
-    void dfs(int i,vector<int> adj[],vector<int> &vis,vector<int> &color,int c)
+    void dfs(int node,vector<int> adj[],vector<int> &vis,vector<int> &color,int c)
     {
-        if(vis[i])
+        if(vis[node])
         {
             return;
         }
-        vis[i]=true;
-        color[i]=c;
-        for(auto it:adj[i])
+        vis[node]=1;
+        color[node]=c;
+        for(auto it:adj[node])
         {
-            if(!vis[it])
-            {
-                dfs(it,adj,vis,color,c);
-            }
+            dfs(it,adj,vis,color,c);
         }
     }
     bool equationsPossible(vector<string>& equations) {
-        vector<int> adj[27];
-        for(auto it:equations)
+        vector<int> adj[26];
+        
+        int n=equations.size();
+        for(int i=0;i<n;i++)
         {
-            if(it[1]=='=')
+            if(equations[i][1]=='=')
             {
-                adj[it[0]-'a'].push_back(it[3]-'a');
-                adj[it[3]-'a'].push_back(it[0]-'a');
+                adj[equations[i][0]-'a'].push_back(equations[i][3]-'a');
+                adj[equations[i][3]-'a'].push_back(equations[i][0]-'a');
             }
         }
         vector<int> vis(26,0);
-        vector<int> color(27,0);
-        int c=1;
+        vector<int> color(26,0);
+        int c=0;
         for(int i=0;i<26;i++)
         {
             if(!vis[i])
@@ -37,11 +36,11 @@ public:
                 c++;
             }
         }
-        for(auto it:equations)
+        for(int i=0;i<n;i++)
         {
-            if(it[1]=='!')
+            if(equations[i][1]=='!')
             {
-                if(color[it[0]-'a']==color[it[3]-'a'])
+                if(color[equations[i][0]-'a']==color[equations[i][3]-'a'])
                 {
                     return false;
                 }
