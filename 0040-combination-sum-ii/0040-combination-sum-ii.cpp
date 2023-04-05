@@ -9,15 +9,10 @@ public:
             ans.push_back(v);
             return;
         }
-        if(i==n)
+        if(i==n || target<0)
         {
             return;
         }
-        if(target<0)
-        {
-            return;
-        }
-        
         for(int j=i;j<n;j++)
         {
             if(j!=i && nums[j]==nums[j-1])
