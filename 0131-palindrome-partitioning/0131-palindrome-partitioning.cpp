@@ -1,34 +1,48 @@
 class Solution {
 public:
-    vector<vector<string>> partition(string s) {
-        vector<vector<string> > ret;
-        if(s.empty()) return ret;
-        
-        vector<string> path;
-        dfs(0, s, path, ret);
-        
-        return ret;
-    }
-    
-    void dfs(int index, string& s, vector<string>& path, vector<vector<string> >& ret) {
-        if(index == s.size()) {
-            ret.push_back(path);
-            return;
-        }
-        for(int i = index; i < s.size(); ++i) {
-            if(isPalindrome(s, index, i)) {
-                path.push_back(s.substr(index, i - index + 1));
-                dfs(i+1, s, path, ret);
-                path.pop_back();
-            }
-        }
-    }
-    
-    bool isPalindrome(const string& s, int start, int end) {
-        while(start <= end) {
-            if(s[start++] != s[end--])
+    vector<vector<string>> ans;
+    bool palindrome(string &s)
+    {
+        int i=0;
+        int j=s.size()-1;
+        while(i<=j)
+        {
+            if(s[i]!=s[j])
+            {
                 return false;
+            }
+            i++;
+            j--;
         }
         return true;
+    }
+    void dfs(int i,string &s,vector<string> &v)
+    {
+        int n=s.size();
+        if(i>=n)
+        {
+            ans.push_back(v);
+            return;
+        }
+        for(int idx=i;idx<n;idx++)
+        {
+            string w=s.substr(i,idx-i+1);
+            if(palindrome(w))
+            {
+                v.push_back(w);
+                dfs(idx+1,s,v);
+                v.pop_back();
+            }
+        }
+        return ;
+    }
+    vector<vector<string>> partition(string s) {
+        if(s.size()==0)
+        {
+            return ans;
+        }
+        vector<string> v;
+        dfs(0,s,v);
+        return ans;
     }
 };
