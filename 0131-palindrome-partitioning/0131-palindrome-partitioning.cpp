@@ -24,9 +24,10 @@ public:
             ans.push_back(v);
             return;
         }
+        string w="";
         for(int idx=i;idx<n;idx++)
         {
-            string w=s.substr(i,idx-i+1);
+            w+=s[idx];
             if(palindrome(w))
             {
                 v.push_back(w);
