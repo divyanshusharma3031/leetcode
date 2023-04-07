@@ -18,6 +18,10 @@ public:
         for(int idx=i;idx<n;idx++)
         {
             sub+=s[idx];
+            if(b)
+            {
+                return dp[i]=true;
+            }
             if(mpp[sub])
             {
                 b=b|solve(idx+1,s);
