@@ -4,17 +4,14 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
   int n;
   int dp[100001];
   int solve(int i,vector<int> &height)
   {
-      if(i>=n)
-      {
-          return 0;
-      }
-      if(i==(n-1))
+      if(i>=(n-1))
       {
           return 0;
       }
@@ -34,6 +31,7 @@ class Solution {
         return solve(0,height);
     }
 };
+
 
 //{ Driver Code Starts.
 
