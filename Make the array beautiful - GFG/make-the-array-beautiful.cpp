@@ -17,20 +17,20 @@ class Solution {
   public:
     vector<int> makeBeautiful(vector<int> arr) {
         // code here
-        set<int> s;
+        vector<int> s;
         int n=arr.size();
         for(int i=0;i<n;)
         {
-            s.insert(i);
+            s.push_back(i);
             int j=i+1;
             while(j<n && sign(arr[i])==sign(arr[j]))
             {
-                s.insert(j);
+                s.push_back(j);
                 j++;
             }
             while(j<n && sign(arr[i])!=sign(arr[j]) && s.size())
             {
-                s.erase(--s.end());
+                s.pop_back();
                 j++;
             }
             i=j;
