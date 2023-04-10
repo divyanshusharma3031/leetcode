@@ -16,22 +16,16 @@ using namespace __gnu_pbds;
 typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
 class Solution {
   public:
-    int maxIntersections(vector<vector<int>> lines, int n) {
+    int maxIntersections(vector<vector<int>> &lines, int n) {
         // Code here
         sort(lines.begin(),lines.end());
         ordered_set s;
-        priority_queue<int,vector<int>,greater<int>> pq;
         int mx=0;
-        int cal=0;
         for(int i=0;i<n;i++)
         {
-            while(!pq.empty() && pq.top()<lines[i][0])
-            {
-                cal++;
-                pq.pop();
-            }
-            pq.push(lines[i][1]);
-            mx=max(mx,i+1-cal);
+            int sz=i+1-(s.order_of_key(lines[i][0]));
+            mx=max(mx,sz);
+            s.insert(lines[i][1]);
         }
         return mx;
     }
