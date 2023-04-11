@@ -7,14 +7,8 @@ public:
         sort(A.begin(),A.end());
         int K = A[n / 2];
         for (int i = 0; i < n; ++i)
+        {
             cost += abs(A[i] - K);
-        if (n % 2 == 0) {
-            long long tempCost = 0;
-
-            K = A[(n / 2) - 1];
-            for (int i = 0; i < n; ++i)
-                tempCost += abs(A[i] - K);
-            cost = min(cost, tempCost);
         }
         return cost;
     }
