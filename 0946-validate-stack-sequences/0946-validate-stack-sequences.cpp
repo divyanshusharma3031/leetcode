@@ -13,6 +13,6 @@ public:
                 j++;
             }
         }
-        return s.empty();
+        return s.size()==0;
     }
 };
