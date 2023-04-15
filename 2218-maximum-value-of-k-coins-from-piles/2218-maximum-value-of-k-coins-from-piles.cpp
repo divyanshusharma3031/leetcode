@@ -3,10 +3,6 @@ public:
     vector<vector<int>> dp;
     int solve(int i,vector<vector<int>> & piles,int k)
     {
-        if(k<=0)
-        {
-            return 0;
-        }
         if(i>=piles.size())
         {
             return 0;
