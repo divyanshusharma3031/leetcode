@@ -26,18 +26,18 @@ public:
                 q.push({q.front().first,1});
                 q.pop();
             }
-            ans = max( q.back().second - q.front().second + 1ll, ans);
+            ans = max( (q.back().second - q.front().second)/2ll + 1ll, ans);
             while( size--){
                 auto node = q.front().first;
                 auto idx = q.front().second;
                 q.pop();
                 if( node->left )
                 {
-                    q.push({node->left, idx*2ll});
+                    q.push({node->left, idx*2ll-1ll});
                 }
                 if( node->right )
                 {
-                    q.push({node->right, idx*2ll+1});
+                    q.push({node->right, idx*2ll+1ll});
                 }
             }
             
