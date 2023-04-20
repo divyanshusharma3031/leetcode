@@ -11,9 +11,13 @@
  */
 class Solution {
 public:
+    typedef pair<TreeNode *,unsigned long long> PNULL;
     int widthOfBinaryTree(TreeNode* root) {
-        if( !root ) return 0;
-        queue<pair<TreeNode*,unsigned long long> > q;
+        if( !root )
+        {
+            return 0;
+        }
+        queue<PNULL> q;
         q.push({root, 1 });
         unsigned long long ans = 0;
         while(!q.empty() ){
@@ -23,15 +27,18 @@ public:
                 q.pop();
             }
             ans = max( q.back().second - q.front().second + 1ll, ans);
-        
             while( size--){
                 auto node = q.front().first;
                 auto idx = q.front().second;
                 q.pop();
                 if( node->left )
+                {
                     q.push({node->left, idx*2ll});
+                }
                 if( node->right )
+                {
                     q.push({node->right, idx*2ll+1});
+                }
             }
             
         }
