@@ -1,7 +1,7 @@
 
 class Solution {
 public:
-    int dp[101][101][1201];
+    int dp[101][101][101];
     const int mod=1e9+7;
     int solve(int i,int n,vector<int> &group,vector<int> &profit,int minProfit)
     {
@@ -14,14 +14,14 @@ public:
         {
             return 0ll;
         }
-        if(dp[i][n][minProfit+1100]!=-1)
+        if(dp[i][n][minProfit]!=-1)
         {
-            return dp[i][n][minProfit+1100];
+            return dp[i][n][minProfit];
         }
         long long curr=0;
-        curr=(curr+solve(i+1,n-group[i],group,profit,minProfit-profit[i]))%mod;
-        curr=(curr+solve(i+1,n,group,profit,minProfit))%mod;
-        return dp[i][n][minProfit+1100]=curr;
+        curr=(curr+solve(i+1,n-group[i],group,profit,max(0,minProfit-profit[i])))%mod;
+        curr=(curr+solve(i+1,n,group,profit,max(0,minProfit)))%mod;
+        return dp[i][n][minProfit]=curr;
     }
     int profitableSchemes(int n, int minProfit, vector<int>& group, vector<int>& profit) {
         // wt=n
