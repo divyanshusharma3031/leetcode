@@ -3,47 +3,45 @@ public:
     vector<vector<string>> ans;
     bool palindrome(string &s)
     {
-        int i=0;
-        int j=s.size()-1;
-        while(i<=j)
+        int lo=0;
+        int hi=s.size()-1;
+        while(lo<=hi)
         {
-            if(s[i]!=s[j])
+            if(s[lo]==s[hi])
+            {
+                lo++;
+                hi--;
+            }
+            else
             {
                 return false;
             }
-            i++;
-            j--;
         }
         return true;
     }
-    void dfs(int i,string &s,vector<string> &v)
+    void solve(int i,string &s,vector<string> &v)
     {
         int n=s.size();
-        if(i>=n)
+        if(i==n)
         {
             ans.push_back(v);
             return;
         }
-        string w="";
+        string sub="";
         for(int idx=i;idx<n;idx++)
         {
-            w+=s[idx];
-            if(palindrome(w))
+            sub=sub+s[idx];
+            if(palindrome(sub))
             {
-                v.push_back(w);
-                dfs(idx+1,s,v);
+                v.push_back(sub);
+                solve(idx+1,s,v);
                 v.pop_back();
             }
         }
-        return ;
     }
     vector<vector<string>> partition(string s) {
-        if(s.size()==0)
-        {
-            return ans;
-        }
         vector<string> v;
-        dfs(0,s,v);
+        solve(0,s,v);
         return ans;
     }
 };
