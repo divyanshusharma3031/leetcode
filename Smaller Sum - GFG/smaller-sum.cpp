@@ -22,7 +22,6 @@ public:
         for(int i=0;i<n;i++)
         {
             int idx=lower_bound(arr.begin(),arr.end(),a[i])-arr.begin();
-            // idx--;
             ans.push_back(pref[idx]);
         }
         return ans;
