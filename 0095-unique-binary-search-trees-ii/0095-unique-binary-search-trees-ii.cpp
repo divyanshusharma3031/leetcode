@@ -13,17 +13,22 @@ class Solution {
 public:
     #define Node TreeNode
     vector<TreeNode *> ans;
+    unordered_map<string,vector<TreeNode*>> mpp;
     vector<TreeNode*> solve(int i,int j,vector<int> &arr)
     {
         if(i>j)
         {
             return {NULL};
         }
-        // cout<<i<<" "<<j<<"\n";
         if(i==j)
         {
             Node *root=new Node(arr[i]);
             return {root};
+        }
+        string s=to_string(i)+"#"+to_string(j);
+        if(mpp.find(s)!=mpp.end())
+        {
+            return mpp[s];
         }
         vector<TreeNode*> v;
         for(int k=i;k<=j;k++)
@@ -41,7 +46,7 @@ public:
                 }
             }
         }
-        return v;
+        return mpp[s]=v;
     }
     vector<TreeNode*> generateTrees(int n) {
         vector<int> v;
