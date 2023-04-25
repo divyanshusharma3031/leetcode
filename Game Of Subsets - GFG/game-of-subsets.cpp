@@ -44,10 +44,10 @@ public:
         }
         long long ele=filtered[i];
         bool b=true;
-        // if(dp[i][mask]!=-1)
-        // {
-        //     return dp[i][mask];
-        // }
+        if(dp[i][mask]!=-1)
+        {
+            return dp[i][mask];
+        }
         int copy=mask;
         for(int j=2;j<=30;j++)
         {
@@ -73,7 +73,7 @@ public:
             take=(mpp[filtered[i]]*solve(i+1,filtered,copy))%mod;
         }
         long long nottake=(solve(i+1,filtered,mask))%mod;
-        return (take+nottake)%mod;
+        return dp[i][mask]=(take+nottake)%mod;
     }
     int goodSubsets(vector<int> &arr, int n){
         // Code here
@@ -97,7 +97,7 @@ public:
         }
         int mask=0;
         count=power(2,count);
-        // dp.resize(30,vector<long long>(2048+1,-1));
+        dp.resize(30,vector<long long>(2048+1,-1));
         return (solve(0,filtered,mask)*(count))%mod;
     }
 };
