@@ -7,6 +7,7 @@ using namespace std;
 
 // } Driver Code Ends
 //User function Template for C++
+//User function Template for C++
 int power(long long x, long long int y, int p=1e9+7)
 {
     int res = 1;     // Initialize result
@@ -43,10 +44,10 @@ public:
         }
         long long ele=filtered[i];
         bool b=true;
-        if(dp[i][mask]!=-1)
-        {
-            return dp[i][mask];
-        }
+        // if(dp[i][mask]!=-1)
+        // {
+        //     return dp[i][mask];
+        // }
         int copy=mask;
         for(int j=2;j<=30;j++)
         {
@@ -69,15 +70,15 @@ public:
         long long take=0;
         if(b)
         {
-            take=((((mpp[filtered[i]])%mod)*((solve(i+1,filtered,copy)%mod))))%mod;
+            take=(mpp[filtered[i]]*solve(i+1,filtered,copy))%mod;
         }
         long long nottake=(solve(i+1,filtered,mask))%mod;
-        return dp[i][mask]=(take+nottake)%mod;
+        return (take+nottake)%mod;
     }
     int goodSubsets(vector<int> &arr, int n){
         // Code here
         set<int> primes={2,3,5,7,11,13,17,19,23,29,6,10,14,22,26,15,21,30};
-        long long count=0;
+        int count=0;
         for(int i=0;i<n;i++)
         {
             if(arr[i]==1)
@@ -95,11 +96,12 @@ public:
             filtered.push_back(it.first);
         }
         int mask=0;
-        count=power(2ll,count)%mod;
-        dp.resize(31,vector<long long>(4096+1,-1));
+        count=power(2,count);
+        // dp.resize(30,vector<long long>(2048+1,-1));
         return (solve(0,filtered,mask)*(count))%mod;
     }
 };
+// 
 // 
 
 //{ Driver Code Starts.
