@@ -34,7 +34,7 @@ public:
     const int mod=1e9+7;
     map<long long,long long> mpp;
     unordered_map<int,int> pos={{2,0},{3,1},{5,2},{7,3},{11,4},{13,5},{17,6},{19,7},{23,8},{29,9}};
-    vector<vector<long long>> dp;
+    long long dp[31][2097];
     int solve(int i,vector<long long> &filtered,int mask)
     {
         int n=filtered.size();
@@ -97,7 +97,7 @@ public:
         }
         int mask=0;
         count=power(2,count);
-        dp.resize(30,vector<long long>(2048+1,-1));
+        memset(dp,-1,sizeof(dp));
         return (solve(0,filtered,mask)*(count))%mod;
     }
 };
