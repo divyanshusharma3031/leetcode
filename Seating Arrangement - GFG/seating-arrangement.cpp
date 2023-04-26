@@ -12,7 +12,7 @@ class Solution{
     public:
     bool is_possible_to_get_seats(int n, int m, vector<int>& seats){
         // Write your code here.
-        set<int> s;
+        unordered_set<int> s;
         for(int i=0;i<m;i++)
         {
             s.insert(i);
