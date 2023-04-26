@@ -32,6 +32,10 @@ public:
         {
             return mask!=0;
         }
+        if(dp[i][mask]!=-1)
+        {
+            return dp[i][mask];
+        }
         bool b=true;
         long long ele=arr[i];
         int copy=mask;
@@ -58,11 +62,12 @@ public:
             take=((freq[arr[i]])*(solve(i+1,arr,copy)))%mod;
         }
         long long nottake=solve(i+1,arr,mask)%mod;
-        return (take+nottake)%mod;
+        return dp[i][mask]=(take+nottake)%mod;
     }
     int numberOfGoodSubsets(vector<int>& nums) {
         set<int> primes={2,3,5,7,11,13,17,19,23,29,6,10,14,22,26,15,21,30};
         long long count=0;
+        memset(dp,-1,sizeof(dp));
         for(auto it:nums)
         {
             if(it==1)
