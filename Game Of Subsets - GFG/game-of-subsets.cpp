@@ -34,7 +34,7 @@ public:
     const int mod=1e9+7;
     map<long long,long long> mpp;
     unordered_map<int,int> pos={{2,0},{3,1},{5,2},{7,3},{11,4},{13,5},{17,6},{19,7},{23,8},{29,9}};
-    long long dp[31][2097];
+    long long dp[20][2097];
     int solve(int i,vector<long long> &filtered,int mask)
     {
         int n=filtered.size();
