@@ -9,7 +9,7 @@ class Solution {
 public:
     int bfs(vector<int> arr[], int cv, int dest)
 {
-    set<int> s;
+    unordered_set<int> s;
     queue<int> q;
     int level=1;
 
