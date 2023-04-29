@@ -22,50 +22,51 @@ void myerase(ordered_set &t, int v){
 
 class Solution{
 public:
-    vector<char> easyTask(int n,string s,int q,vector<vector<string>> &queries){
-        // Code here
-        vector<char> ans;
-        map<int,ordered_set> mpp;
-        for(int i=0;i<n;i++)
+    vector<char> easyTask(int n,string s,int q,vector<vector<string>> &queries)
+{
+    vector<char> ans;
+    vector<ordered_set> v(26);
+    for(int i=0;i<n;i++)
+    {
+        v[s[i]-97].insert(i);
+    }
+    
+    for(int i=0;i<q;i++)
+    {
+        if(queries[i][0]=="1")
         {
-            mpp[s[i]].insert(i);
+            int ind = stoi(queries[i][1]);
+            char c = queries[i][2][0];
+            myerase(v[s[ind]-'a'],ind);
+            v[c-97].insert(ind);
+            s[ind] = c;
         }
-        for(int i=0;i<q;i++)
+        else
         {
-            int type=queries[i][0][0]-'0';
-            if(type==1)
+            int l = stoi(queries[i][1]);
+            int r = stoi(queries[i][2]);
+            int k = stoi(queries[i][3]);
+            for(int j=25;j>=0;j--)
             {
-                int idx=stoi(queries[i][1]);
-                char c=queries[i][2][0];
-                myerase(mpp[s[idx]],idx);
-                mpp[c].insert(idx);
-                s[idx]=c;
-            }
-            else
-            {
-                int lo=stoi(queries[i][1]);
-                int hi=stoi(queries[i][2]);
-                int k=stoi(queries[i][3]);
-                for(char x='z';x>='a';x--)
+                int start=v[j].order_of_key(l);
+                int end=v[j].order_of_key(r+1);
+                int count=end-start;
+                if(k>count)
                 {
-                    int start=mpp[x].order_of_key(lo);
-                    int end=mpp[x].order_of_key(hi+1);
-                    int count=end-start;
-                    if(k>count)
-                    {
-                        k=k-count;
-                    }
-                    else
-                    {
-                        ans.push_back(x);
-                        break;
-                    }
+                    k=k-count;
+                }
+                else
+                {
+                    ans.push_back(j+'a');
+                    break;
                 }
             }
         }
-        return ans;
     }
+    return ans;
+}
 };
+
 
 //{ Driver Code Starts.
 
