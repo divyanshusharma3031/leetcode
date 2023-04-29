@@ -1,6 +1,6 @@
 class Solution {
 public:
-    set<string> s;
+    unordered_set<string> s;
     bool check(string &s1,string &s2)
     {
         int c=0;
