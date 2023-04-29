@@ -3,54 +3,80 @@
 using namespace std;
 
 // } Driver Code Ends
+
+
 class Solution {
 public:
-    bool validWord(string &s1,string &s2)
+    int bfs(vector<int> arr[], int cv, int dest)
+{
+    set<int> s;
+    queue<int> q;
+    int level=1;
+
+    q.push(cv);
+    s.insert(cv);
+
+    while(q.size())
     {
-        if(s1.length()!=s2.length())
+        int size = q.size();
+        level++;
+        for(int i=0;i<size;i++)
         {
-            return false;
-        }
-        int c=0;
-        for(int i=0;i<s1.length();i++)
-        {
-            if(s1[i]!=s2[i])
-            {
-                c++;
-            }
-        }
-        return c<=1;
-    }
-    int wordLadderLength(string beginWord, string endWord, vector<string>& wordList) {
-        queue<pair<string,int>> q;
-        q.push({beginWord,1});
-        map<string,int> mpp;
-        while(!q.empty())
-        {
-            auto it=q.front();
+            int front = q.front();
             q.pop();
-            string s=it.first;
-            int c=it.second;
-            if(endWord==s)
+
+            for(int j=0;j<arr[front].size();j++)
             {
-                return c;
-            }
-            for(int i=0;i<wordList.size();i++)
-            {
-                if(validWord(s,wordList[i]) && mpp[wordList[i]]==0)
-                {
-                    q.push({wordList[i],c+1});
-                    if(wordList[i]==endWord)
-                    {
-                        return c+1;
-                    }
-                    mpp[wordList[i]]++;
-                }
+                if(arr[front][j]==dest){return level;}
+                if(s.count(arr[front][j])){continue;}
+                
+                q.push(arr[front][j]);
+                s.insert(arr[front][j]);
             }
         }
-        return 0;
     }
+    return 0;
+}
+
+int wordLadderLength(string startWord, string targetWord, vector<string>& wordList) 
+{
+    int wl = wordList.size();
+    int wll = wordList[0].length();
+    bool check = true;
+    int cv;
+    int dest;
+    for(int i=0;i<wl;i++)
+    {
+        if(wordList[i]==startWord){check=false; cv = i;}
+        if(wordList[i]==targetWord){dest = i;}
+    }
+    if(check){wordList.insert(wordList.begin(),startWord); cv=0; dest++;}
+    
+    wl = wordList.size();
+    vector<int> arr[wl];
+    
+    for(int i=0;i<wl;i++)
+    {
+        for(int j=i+1;j<wl;j++)
+        {
+            int count=0;
+            for(int p=0;p<wll;p++)
+            {
+                if(wordList[i][p]!=wordList[j][p])
+                {count++;}
+            }
+            if(count==1)
+            {
+                arr[i].push_back(j);
+                arr[j].push_back(i);
+            }
+        }
+    }
+    return bfs(arr, cv, dest);
+}
 };
+
+
 
 //{ Driver Code Starts.
 int main(){
