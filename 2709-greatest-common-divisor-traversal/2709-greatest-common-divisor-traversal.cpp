@@ -44,13 +44,25 @@ class Solution {
 public:
     bool canTraverseAllPairs(vector<int>& nums) {
         unordered_map<int,vector<int>> mpp;
+        set<int> s;
         int n=nums.size();
-       for(int i=0;i<nums.size();i++)
+        for(int i=0;i<n;i++)
         {
             if(nums[i]==1 && n!=1)
             {
                 return false;
             }
+            s.insert(nums[i]);
+        }
+        vector<int> v;
+        for(auto it:s)
+        {
+            v.push_back(it);
+        }
+        nums=v;
+        n=nums.size();
+        for(int i=0;i<nums.size();i++)
+        {
             for(int j=2;j*j<=nums[i];j++)
             {
                 if(nums[i]%j==0)
@@ -72,11 +84,11 @@ public:
                 d.union_size(it.second[i],it.second[i+1]);
             }
         }
-        set<int> s;
+        set<int> s2;
         for(int i=0;i<n;i++)
         {
-            s.insert(d.find(i));
+            s2.insert(d.find(i));
         }
-        return s.size()==1;
+        return s2.size()==1;
     }
 };
