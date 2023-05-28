@@ -1,7 +1,6 @@
 class Solution {
 public:
     int totalHammingDistance(vector<int>& nums) {
-//         will give TLE or will barely pass
         int n=nums.size();
         vector<int> bitmap(32,0);
         for(int i=0;i<n;i++)
