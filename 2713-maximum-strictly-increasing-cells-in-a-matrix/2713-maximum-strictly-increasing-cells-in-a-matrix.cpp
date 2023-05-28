@@ -3,7 +3,7 @@ public:
     int maxIncreasingCells(vector<vector<int>>& mat) {
         int n=mat.size();
         int m=mat[0].size();
-        map<int,vector<vector<int>>> mpp;
+        unordered_map<int,vector<vector<int>>> mpp;
         set<int> s;
         for(int i=0;i<n;i++)
         {
