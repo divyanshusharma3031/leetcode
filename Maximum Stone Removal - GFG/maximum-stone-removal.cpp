@@ -44,15 +44,15 @@ class Solution {
     int maxRemove(vector<vector<int>>& stones, int n) {
         // Code here
         UnionFind d;
-        map<int,set<int>> row;
+        unoredered_map<int,set<int>> row;
         map<int,set<int>> col;
         for(int i=0;i<n;i++)
         {
             long long r=stones[i][0];
             long long c=stones[i][1];
-            d.parent[(r*10000ll)+c]=(r*10000ll)+c;
-            row[r].insert((r*10000ll)+c);
-            col[c].insert((r*10000ll)+c);
+            d.parent[i]=i;
+            row[r].insert(i);
+            col[c].insert(i);
         }
         unordered_map<long long,int> mpp;
         for(auto it:row)
@@ -75,7 +75,7 @@ class Solution {
         {
             long long r=stones[i][0];
             long long c=stones[i][1];
-            long long y=d.find((r*10000ll)+c);
+            long long y=d.find(i);
             mpp[y]++;
         }
         return n-mpp.size();
