@@ -44,8 +44,8 @@ class Solution {
     int maxRemove(vector<vector<int>>& stones, int n) {
         // Code here
         UnionFind d;
-        unoredered_map<int,set<int>> row;
-        map<int,set<int>> col;
+        unordered_map<int,set<int>> row;
+        unordered_map<int,set<int>> col;
         for(int i=0;i<n;i++)
         {
             long long r=stones[i][0];
