@@ -12,7 +12,7 @@ class Solution{
 public:
     int LargButMinFreq(int arr[], int n) {
         // code here
-        map<int,int> mpp;
+        unordered_map<int,int> mpp;
         for(int i=0;i<n;i++)
         {
             mpp[arr[i]]++;
