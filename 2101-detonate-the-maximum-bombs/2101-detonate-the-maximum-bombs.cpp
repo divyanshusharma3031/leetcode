@@ -1,41 +1,3 @@
-class UnionFind
-{
- 
-public:
-    unordered_map<int,int> parent;
-    unordered_map<int,int> rank;
-    int find(int x)
-    {
-        if (parent[x] != x)
-        {
-            parent[x] = find(parent[x]);
-        }
-        return parent[x];
-    }
- 
-    void join(int x, int y)
-    {
-        int X = find(x);
-        int Y = find(y);
-        if (X != Y)
-        {
-            if (rank[X] < rank[Y])
-            {
-                parent[X] = Y;
-            }
-            else if (rank[X] > rank[Y])
-            {
-                parent[Y] = X;
-            }
-            else
-            {
-                parent[X] = Y;
-                rank[Y]++;
-            }
-        }
-    }
-};
-
 class Solution {
 public:
     void dfs(int node,vector<int> adj[],vector<int> &vis,int &ans)
@@ -87,5 +49,3 @@ public:
         return count;
     }
 };
-// [69,57,7];
-// [65,59,3];
