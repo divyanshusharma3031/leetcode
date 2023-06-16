@@ -5,10 +5,9 @@ using namespace std;
 
 // } Driver Code Ends
 
-
+long long dp[100001][2];
 class Solution {
   public:
-    long long dp[100001][2];
     long long solve(long long i,long long prev,vector<vector<long long>> &mpp)
     {
         if(i==mpp.size())
