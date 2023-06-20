@@ -17,7 +17,7 @@ int main()
 // } Driver Code Ends
 
 
-int LCS(string A,string B,string C,int n1,int n2,int n3,vector<vector<vector<int>>> &dp)
+int LCS(string &A,string &B,string &C,int n1,int n2,int n3,vector<vector<vector<int>>> &dp)
 {
     if(n3<=0)
     {
