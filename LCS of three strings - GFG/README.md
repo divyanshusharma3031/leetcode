@@ -1,37 +1,35 @@
 # LCS of three strings
-## Medium 
-<div class="problem-statement" style="user-select: auto;">
-                <p style="user-select: auto;"></p><p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">Given 3 strings A, B&nbsp;and C, the task is to find the longest common sub-sequence in all three given sequences.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given 3 strings A, B&nbsp;and C, the task is to find the longest common sub-sequence in all three given sequences.</span></p>
 
-<p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Example 1:</strong></span></p>
+<p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input:</strong>
+<pre><span style="font-size:18px"><strong>Input:</strong>
 A = "geeks", B = "geeksfor", 
 C = "geeksforgeeks"
-<strong style="user-select: auto;">Output:</strong> 5
-<strong style="user-select: auto;">Explanation</strong>: "geeks"is the longest common
+<strong>Output:</strong> 5
+<strong>Explanation</strong>: "geeks"is the longest common
 subsequence with length 5.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</pre>
 
-<p style="user-select: auto;"><span style="font-size: 18px; user-select: auto;">â€‹<strong style="user-select: auto;">Example 2:</strong></span></p>
+<p><span style="font-size:18px">â€‹<strong>Example 2:</strong></span></p>
 
-<pre style="position: relative; user-select: auto;"><span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Input</strong>: 
+<pre><span style="font-size:18px"><strong>Input</strong>: 
 A = "abcd", B = "efgh", C = "ijkl"
-<strong style="user-select: auto;">Output:</strong> 0
-<strong style="user-select: auto;">Explanation</strong>: There's no common subsequence
+<strong>Output:</strong> 0
+<strong>Explanation</strong>: There's no common subsequence
 in all the strings.</span>
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper" style="user-select: auto;"></div></pre>
+</pre>
 
-<p style="user-select: auto;"><br style="user-select: auto;">
-<span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Your Task:</strong><br style="user-select: auto;">
-You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong style="user-select: auto;">LCSof3()&nbsp;</strong>which takes the strings A, B, C and their lengths n1, n2, n3&nbsp;as input and returns the length of the longest common subsequence in all the 3 strings.</span></p>
+<p><br>
+<span style="font-size:18px"><strong>Your Task:</strong><br>
+You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>LCSof3()&nbsp;</strong>which takes the strings A, B, C and their lengths n1, n2, n3&nbsp;as input and returns the length of the longest common subsequence in all the 3 strings.</span></p>
 
-<p style="user-select: auto;"><br style="user-select: auto;">
-<span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Expected Time Complexity:&nbsp;</strong>O(n1*n2*n3).<br style="user-select: auto;">
-<strong style="user-select: auto;">Expected Auxiliary Space:&nbsp;</strong>O(n1*n2*n3).</span></p>
+<p><br>
+<span style="font-size:18px"><strong>Expected Time Complexity:&nbsp;</strong>O(n1*n2*n3).<br>
+<strong>Expected Auxiliary Space:&nbsp;</strong>O(n1*n2*n3).</span></p>
 
-<p style="user-select: auto;"><br style="user-select: auto;">
-<span style="font-size: 18px; user-select: auto;"><strong style="user-select: auto;">Constraints:</strong><br style="user-select: auto;">
+<p><br>
+<span style="font-size:18px"><strong>Constraints:</strong><br>
 1&lt;=n1, n2, n3&lt;=20</span></p>
- <p style="user-select: auto;"></p>
-            </div>
+</div>
