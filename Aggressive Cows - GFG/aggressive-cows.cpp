@@ -9,17 +9,16 @@ using namespace std;
 
 class Solution {
 public:
-    bool check(int mid,int k,vector<int> &arr)
+    int check(int mid,vector<int> &stalls,int k)
     {
-        int diff=0;
-        int prev=arr[0];
-        int n=arr.size();
-        for(int i=1;i<n;i++)
+        int lo=stalls[0];
+        int n=stalls.size();
+        for(int i=0;i<n;i++)
         {
-            if((arr[i]-prev)>=mid)
+            if((stalls[i]-lo)>=mid)
             {
+                lo=stalls[i];
                 k--;
-                prev=arr[i];
             }
         }
         return k<=1;
@@ -27,15 +26,14 @@ public:
     int solve(int n, int k, vector<int> &stalls) {
     
         // Write your code here
-        // max(min)
-        int lo=0;
         sort(stalls.begin(),stalls.end());
-        int hi=stalls[n-1]-stalls[0];
-        int ans=hi;
+        int lo=0;
+        int hi=1e9;
+        int ans=0;
         while(lo<=hi)
         {
             int mid=(lo+hi)/2;
-            if(check(mid,k,stalls))
+            if(check(mid,stalls,k))
             {
                 ans=mid;
                 lo=mid+1;
