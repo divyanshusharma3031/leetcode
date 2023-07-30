@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -92,8 +92,23 @@ Node* search(Node* root, int key)
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*The structure of Node
+
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    /*The structure of Node
 
 struct Node {
     int data;
@@ -132,7 +147,7 @@ class Solution{
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main()
 {
@@ -160,4 +175,5 @@ int main()
     }
     
     return 1;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
