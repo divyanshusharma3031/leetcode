@@ -7,63 +7,57 @@ using namespace std;
 // } Driver Code Ends
 // User function Template for C++
 
-class Solution {
+class Solution{
 public:
-    int dp[2001];
-    bool palindrome(string &s)
+    int dp[501];
+    bool palindrome(string &str)
     {
-        int lo=0;
-        int hi=s.size()-1;
-        while(lo<=hi)
+        int i=0;
+        int j=str.size()-1;
+        while(i<=j)
         {
-            if(s[lo]!=s[hi])
+            if(str[i]==str[j])
+            {
+                i++;
+                j--;
+            }
+            else
             {
                 return false;
             }
-            lo++;
-            hi--;
         }
         return true;
     }
     int solve(int i,string &s)
     {
         int n=s.size();
-        if(i>=(n))
+        if(i>=n)
         {
             return 0;
         }
+        int ans=1e9;
+        string str="";
         if(dp[i]!=-1)
         {
             return dp[i];
         }
-        int ans=INT_MAX;
-        string sub="";
         for(int idx=i;idx<n;idx++)
         {
-            sub+=s[idx];
-            if(palindrome(sub))
+            str+=s[idx];
+            if(palindrome(str))
             {
-                if((idx+1)!=n)
-                    ans=min(ans,1+solve(idx+1,s));
-                else
-                {
-                    ans=0;
-                }
-            }
-            else
-            {
-                ans=min(ans,int(1e9));
+                ans=min(ans,1+solve(idx+1,s));
             }
         }
         return dp[i]=ans;
     }
-    int palindromicPartition(string s) {
+    int palindromicPartition(string str)
+    {
+        // code here
         memset(dp,-1,sizeof(dp));
-        return solve(0,s);
+        return solve(0,str)-1;
     }
 };
-
-
 
 //{ Driver Code Starts.
 
